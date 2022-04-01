@@ -5,11 +5,11 @@ import random
 
 tiempo = 0.001
 cantidad = 5
-numTelefono = "+54 9 3516 43-7630"
-texto = "Puto"
+numTelefono = "" #Ejemplo: +56912345678
+texto = "Hola"
 
 
-barraDeWts = 834,989
+barraDeWts = 700,1004 #(x,y), depende el monitor, si no funciona, cambiarlo
 
 def abrir(pos,click=1):
     pg.moveTo(pos)

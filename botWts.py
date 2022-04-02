@@ -41,7 +41,7 @@ def cleanMensage(msg):
 def elegirRespuesta(msg):
     mensage = str(msg).lower()
     mensage = cleanMensage(mensage)
-    responses = ['Ehh Mesi']
+    responses = ['Ehh Mesi','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
     if '!' in mensage:
         if mensage == '!help':
             return "func01"
@@ -51,13 +51,27 @@ def elegirRespuesta(msg):
             return "func02"
 
     if 'hola' in mensage:
-        responses = ['Hola', 'Hola, que tal', 'Hola, como estas', 'Hola, como estas?','Tu nariz contra mis bolas']
-    elif 'vs' in mensage or 'vos' in mensage or 'como estas' in mensage or 'como andas' in mensage or 'como te encontras' in mensage or 'todo bien' in mensage or 'como te encontras' in mensage:
-        responses = ['Muy bien', 'Muy bien, gracias por preguntar.', 'Muy piola']
+        responses = ['Holaa', 'Hola, que tal?', 'Hola, como estas?', 'Hola, que haces?','Tu nariz contra mis bolas']
+    elif 'como estas' in mensage or 'como andas' in mensage or 'como te encontras' in mensage or 'todo bien?' in mensage or 'como te encontras' in mensage:
+        responses = ['Muy bien, vs?', 'Muy bien, gracias por preguntar.', 'Todo piola vs??']
     elif 'q haces' in mensage or 'que haces' in mensage:
-        responses = ['Aca piola, Vs?', 'Molestando a Gucci vs?', 'Aca Hablando con un boludo :D\n Nooo estaba re enojado el bot']
+        responses = ['Aca tranqui, Vs?', 'Molestando a Gucci vs?', 'Aca Hablando con un boludo :D\n Nooo estaba re enojado el bot']
     elif 'cuantos años tenes' in mensage or 'cual es tu edad' in mensage:
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
+    elif 'jajaj' in mensage:
+        responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay']
+    elif 'tu tia' in mensage:
+        responses = ['la tuya con sandia']
+    elif 'tu hermana' in mensage:
+        responses = ['la tuya con banana']
+    elif 'xd' in mensage:
+        responses = ['xd']
+    elif 'puto' in mensage:
+        responses = ['puto es tu hermano :D']
+
+    elif 'vs?' in mensage or 'vos?' in mensage:
+        responses = ['bien bien aca ando','tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
+    
     
      
     return random.choice(responses)
@@ -117,7 +131,7 @@ def prenderBot():
             else:
                 escribir(respuesta)
         
-        if(aux==30):
+        if(aux==200):
             break
         time.sleep(1)
 

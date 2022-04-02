@@ -41,7 +41,8 @@ def cleanMensage(msg):
 def elegirRespuesta(msg):
     mensage = str(msg).lower()
     mensage = cleanMensage(mensage)
-    responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
+    print(f"mensaje recibido: {mensage}")
+    responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Simsimi un poroto','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
     if '!' in mensage:
         if mensage == '!help':
             return "func01"
@@ -67,8 +68,16 @@ def elegirRespuesta(msg):
     elif 'xd' in mensage:
         responses = ['xd']
     elif 'puto' in mensage:
-        responses = ['puto es tu hermano :D']
-
+        responses = ['puto es tu hermano :D, trolo']
+    elif 'contas un chiste' in mensage or 'decis un chiste' in mensage or 'conta un chiste' in mensage or 'contame un chiste' in mensage or 'contar un chiste' in mensage or 'haces un chiste' in mensage:
+        responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
+        'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D',
+        'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D']    
+    elif 'cantas una cancion' in mensage or 'cantas algo' in mensage or 'sabes una cancion' in mensage or 'canta una cancion' in mensage or 'cantame' in mensage:
+        responses = ['Vas a verme llegar\n Vas a oir mi cancion\n Vas a entrar sin pedirme la llaaaaaaveeeee\n La distancia del tiempo no sabe\n La falta q le haces\n A mi cooooraaaazoooooooooon',
+        'Encontre al patito Juan\n Cuak Cuak Cuak\n En la esquina de San Juan\n Cuak Cuak Cuak', 'Paolooooo\n Le da Sabor a tu vida\n Paolo esta\n Desde el comienzo del diaaaaaaaa\n Mate cafe\n Harina y Palmitos...',
+        'Fuisteee tu\n Tenerte fue una foto tuya puesta en mi cartera\n Un beso y verte hacer pequeño por la carretera\n Lo tuyo fue la intermitencia y la melancolia\n Lo mio fue aceptatlo todo por q te queria\n Verte llegar fue luz\n Verte partir un plus\n Fuiste Tuuuuuuu',
+        'Dracukeo, el empalador\n La culeo, un taladrador\n Le meto el dedo, dice porfavo\n La caliento, soy un radiador\n Si no tiene los 18, eso es carcel\n Nonono\n Si no son mayores de edades\n Pa tucasa, a ver pocoyo']
     elif 'vs' in mensage or 'vos' in mensage:
         responses = ['bien bien aca ando','tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
     
@@ -83,7 +92,6 @@ def getMensage():
     pg.hotkey('ctrl','c')
     msg = clip.paste()
     pg.click()
-    print(f"mensaje recibido: {msg}")
     return msg
 
 
@@ -118,10 +126,10 @@ def prenderBot():
     while True:
         aux+=1
         boolean = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
-        print(boolean)
+        
         
         if boolean == False:
-            print("Nuevo Mensaje")
+            
             respuesta = elegirRespuesta(getMensage())
             if 'func' in respuesta:
                 if '01' in respuesta:

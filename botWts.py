@@ -38,7 +38,7 @@ def cleanMensage(msg):
             clean_txt = msg
     return clean_txt
 
-def process_response(msg):
+def elegirRespuesta(msg):
     mensage = str(msg).lower()
     mensage = cleanMensage(mensage)
     responses = ['Ehh Mesi']
@@ -53,13 +53,17 @@ def process_response(msg):
     if 'hola' in mensage:
         responses = ['Hola', 'Hola, que tal', 'Hola, como estas', 'Hola, como estas?','Tu nariz contra mis bolas']
     elif 'vs' in mensage or 'vos' in mensage or 'como estas' in mensage or 'como andas' in mensage or 'como te encontras' in mensage or 'todo bien' in mensage or 'como te encontras' in mensage:
-        responses = ['Muy bien', 'Muy bien, gracias por preguntar.', 'Muy piola, recien naci']
+        responses = ['Muy bien', 'Muy bien, gracias por preguntar.', 'Muy piola']
+    elif 'q haces' in mensage or 'que haces' in mensage:
+        responses = ['Aca piola, Vs?', 'Molestando a Gucci vs?', 'Aca Hablando con un boludo :D\n Nooo estaba re enojado el bot']
+    elif 'cuantos años tenes' in mensage or 'cual es tu edad' in mensage:
+        responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
     
      
     return random.choice(responses)
 
 
-def getMesage():
+def getMensage():
     pg.moveTo(ub)
     pg.tripleClick()
     pg.hotkey('ctrl','c')
@@ -76,6 +80,7 @@ def escribir(texto):
     pg.moveTo(barra)
     pg.doubleClick()
     pg.typewrite(f"{texto}\n")
+
 def listado():
     pg.moveTo(barra)
     pg.doubleClick()
@@ -95,7 +100,6 @@ def listado():
 
 def prenderBot():
     aux = 0
-    time.sleep(10)
     escribir("Bot Encendido")
     while True:
         aux+=1
@@ -104,7 +108,7 @@ def prenderBot():
         
         if boolean == False:
             print("Nuevo Mensaje")
-            respuesta = process_response(getMesage())
+            respuesta = elegirRespuesta(getMensage())
             if 'func' in respuesta:
                 if '01' in respuesta:
                     listado()
@@ -128,4 +132,4 @@ def pruebaTexto(mensage):
 
 
 time.sleep(5)
-listado()
+prenderBot()

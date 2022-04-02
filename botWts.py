@@ -29,14 +29,17 @@ except:
     pass
 """
 
-def cleanMensage(msg):
-    vocals = ['a','e','i','o','u']
-    for index, item in enumerate(['á','é','í','ó','ú']):
-        if item in msg:
-            clean_txt = msg.replace(item,vocals[index])
-        else:
-            clean_txt = msg
-    return clean_txt
+def cleanMensage(s):
+    replacements = (
+        ("á", "a"),
+        ("é", "e"),
+        ("í", "i"),
+        ("ó", "o"),
+        ("ú", "u"),
+    )
+    for a, b in replacements:
+        s = s.replace(a, b).replace(a.upper(), b.upper())
+    return s
 
 def elegirRespuesta(msg):
     mensage = str(msg).lower()
@@ -73,7 +76,7 @@ def elegirRespuesta(msg):
         responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
         'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D',
         'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D']    
-    elif 'cantas una cancion' in mensage or 'cantas algo' in mensage or 'sabes una cancion' in mensage or 'canta una cancion' in mensage or 'cantame' in mensage:
+    elif 'cantas una cancion' in mensage or 'cantas algo' in mensage or 'otra cancion' in mensage or 'sabes una cancion' in mensage or 'canta una cancion' in mensage or 'cantame' in mensage:
         responses = ['Vas a verme llegar\n Vas a oir mi cancion\n Vas a entrar sin pedirme la llaaaaaaveeeee\n La distancia del tiempo no sabe\n La falta q le haces\n A mi cooooraaaazoooooooooon',
         'Encontre al patito Juan\n Cuak Cuak Cuak\n En la esquina de San Juan\n Cuak Cuak Cuak', 'Paolooooo\n Le da Sabor a tu vida\n Paolo esta\n Desde el comienzo del diaaaaaaaa\n Mate cafe\n Harina y Palmitos...',
         'Fuisteee tu\n Tenerte fue una foto tuya puesta en mi cartera\n Un beso y verte hacer pequeño por la carretera\n Lo tuyo fue la intermitencia y la melancolia\n Lo mio fue aceptatlo todo por q te queria\n Verte llegar fue luz\n Verte partir un plus\n Fuiste Tuuuuuuu',
@@ -139,7 +142,7 @@ def prenderBot():
             else:
                 escribir(respuesta)
         
-        if(aux==200):
+        if(aux==180):
             break
         time.sleep(1)
 

@@ -46,7 +46,7 @@ def elegirRespuesta(msg):
     mensage = cleanMensage(mensage)
     print(f"mensaje recibido: {mensage}")
     responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Simsimi un poroto','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
-    if '!' in mensage:
+    if '!' == mensage[0]:
         if mensage == '!help':
             return "func01"
         elif mensage == '!hola':
@@ -54,7 +54,7 @@ def elegirRespuesta(msg):
         elif mensage == '!turnoff':
             return "func02"
 
-    if 'hola' in mensage:
+    if inList(mensage, ['hola','hi','hello','hey','buenas','buenos dias','buenas tardes','buenas noches']):
         responses = ['Holaa', 'Hola, que tal?', 'Hola, como estas?', 'Hola, que haces?','Tu nariz contra mis bolas']
     elif 'como estas' in mensage or 'como andas' in mensage or 'como te encontras' in mensage or 'todo bien?' in mensage or 'como te encontras' in mensage:
         responses = ['Muy bien, vs?', 'Muy bien, gracias por preguntar.', 'Todo piola vs??']
@@ -148,11 +148,11 @@ def prenderBot():
 
     escribir("Bot Apagado...")
 
-def pruebaTexto(mensage):
-    if 'hola' in mensage:
-        return True
-    else:
-        return False
+def inList(mensage, lista):
+    for i in lista:
+        if i in mensage:
+            return True
+    return False
 
 
 

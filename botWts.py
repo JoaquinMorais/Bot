@@ -127,21 +127,6 @@ def escribirJunto(lista):
     
     pg.typewrite(f"\n")
 
-def listado():
-    pg.moveTo(barra)
-    pg.doubleClick()
-    pg.typewrite(f"Listado de comandos:")
-    pg.hotkey('shift','enter')
-    pg.typewrite(f"!help: Ayuda")
-    pg.hotkey('shift','enter')
-    pg.typewrite(f"!hola: Saludo")
-    pg.hotkey('shift','enter')
-    pg.typewrite(f"!turnoff: Apagar El Bot")
-    pg.hotkey('shift','enter')
-    pg.typewrite(f"!play preguntados: Jugar a preguntados")
-    pg.hotkey('shift','enter')
-    pg.typewrite(f"\n")
-
 def playPreguntados():
     preg,respuesta =preguntados.Jugar()
     correcta = respuesta[0]
@@ -197,7 +182,7 @@ def prenderBot(jugando):
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    listado()
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!play preguntados: Jugar a preguntados'])
                 elif '02' in respuesta:
                     break
                 elif '03' in respuesta:

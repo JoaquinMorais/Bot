@@ -4,8 +4,14 @@ import time
 import random, re
 import pyperclip as clip
 
+from Juegos.preguntados import Preguntados
 
 
+preguntados = Preguntados()
+
+
+correcta = ""
+respuesta = []
 
 ub = 700,932
 barra = 700,1004
@@ -29,6 +35,7 @@ def elegirRespuesta(msg):
     mensage = cleanMensage(mensage)
     print(f"mensaje recibido: {mensage}")
     responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Simsimi un poroto al lado mio','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
+    
     if '!' == mensage[0]:
         if mensage == '!help':
             return "func01"
@@ -36,7 +43,8 @@ def elegirRespuesta(msg):
             return "Hola!!! Soy un bot de prueba, escribiendo '!help' te daré una lista de comandos"
         elif mensage == '!turnoff':
             return "func02"
-
+        elif mensage == '!play preguntados':
+            return "func03"
     if inList(mensage, ['hola','buenos dias','buenas tardes','buenas noches']) or mensage == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
     elif inList(mensage, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
@@ -110,6 +118,14 @@ def escribir(texto):
     pg.moveTo(barra)
     pg.doubleClick()
     pg.typewrite(f"{texto}\n")
+def escribirJunto(lista):
+    pg.moveTo(barra)
+    pg.doubleClick()
+    for i in lista:
+        pg.typewrite(f"{i}")
+        pg.hotkey('shift','enter')
+    
+    pg.typewrite(f"\n")
 
 def listado():
     pg.moveTo(barra)
@@ -122,13 +138,45 @@ def listado():
     pg.hotkey('shift','enter')
     pg.typewrite(f"!turnoff: Apagar El Bot")
     pg.hotkey('shift','enter')
+    pg.typewrite(f"!play preguntados: Jugar a preguntados")
+    pg.hotkey('shift','enter')
     pg.typewrite(f"\n")
 
+def playPreguntados():
+    preg,respuesta =preguntados.Jugar()
+    correcta = respuesta[0]
 
+    respuesta = mesclarLista(respuesta)
+    posicion = buscarLista(correcta,respuesta)
 
+    respNum = []
+    for i in range(0, len(respuesta)):
+        respNum.append(f"{i+1}) {respuesta[i]}")
 
+    lista = [preg] + respNum
+    escribirJunto(lista)
+    return posicion
 
-def prenderBot():
+def corroborarRespuestaPreguntados(msg,posicion):
+    mensage = str(msg).lower()
+    mensage = cleanMensage(mensage)
+    print(f"mensaje recibido: {mensage}")
+    if mensage == str(posicion+1):
+        return True
+    else:
+        return False
+    
+    
+def mesclarLista(lista):
+    random.shuffle(lista)
+    return lista
+
+def buscarLista(n, lista):
+    for i in range(0, len(lista)):
+        if lista[i] == n:
+            return i
+
+def prenderBot(jugando):
     aux = 0
     escribir("Bot Encendido")
     while True:
@@ -138,12 +186,24 @@ def prenderBot():
         
         if boolean == False:
             
-            respuesta = elegirRespuesta(getMensage())
+            if jugando == 0:
+                respuesta = elegirRespuesta(getMensage())
+            else:
+                if corroborarRespuestaPreguntados(getMensage(),pos):
+                    respuesta = f"Respuesta Correcta!!!"
+                else:
+                    respuesta = f"Respuesta Incorrecta..."
+                jugando = 0
+
             if 'func' in respuesta:
                 if '01' in respuesta:
                     listado()
                 elif '02' in respuesta:
                     break
+                elif '03' in respuesta:
+                    jugando = 1
+                    pos =playPreguntados()
+
             else:
                 escribir(respuesta)
         
@@ -158,4 +218,4 @@ def prenderBot():
 
 
 time.sleep(5)
-prenderBot()
+prenderBot(0)

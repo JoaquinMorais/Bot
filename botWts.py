@@ -43,7 +43,7 @@ def elegirRespuesta(msg):
             return "Hola!!! Soy un bot de prueba, escribiendo '!help' te daré una lista de comandos"
         elif mensage == '!turnoff':
             return "func02"
-        elif mensage == '!play preguntados':
+        elif mensage == '!preguntados':
             return "func03"
         else:
             return "ERROR: Comand not found"
@@ -57,14 +57,14 @@ def elegirRespuesta(msg):
     elif inList(mensage, ['cuantos años tenes','cual es tu edad','cuando naciste']):
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
     elif inList(mensage, ['jajaj','jsjsj','jajsj']):
-        responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay','jajsjaj','jajajajja dios lpm']
+        responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay','jajsjaj','jajajajja dios lpm','jajajajajjaj','jajjsjsjaj']
 
     elif inList(mensage, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensage == 'chiste':
 
         responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
         'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D',
         'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D',
-        'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro\n Por q primero el deber y despues la diversion']    
+        'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro, Por q primero el deber y despues la diversion']    
     
     elif inList(mensage, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']) or mensage == 'canta':
         
@@ -108,6 +108,8 @@ def elegirRespuesta(msg):
         responses = ['Byee, si puedes, pon !turnoff','Descansa, si puedes, pon !turnoff','Chauu, si puedes, pon !turnoff','Despues hablamos, si puedes, pon !turnoff']
     elif inList(mensage, ['me estas boludeando']):
         responses = ['Ci', 'Si','Probablemente :)']
+    elif inList(mensage, ['no entiendo']):
+        responses = ['Q no entendes?']
     
     elif mensage == 'ping':
         responses = ['pong']
@@ -152,6 +154,7 @@ def escribirJunto(lista):
     
     pg.typewrite(f"\n")
 
+##### PREGUNTADOS #####
 def playPreguntados():
     preg,respuesta =preguntados.Jugar()
     correcta = respuesta[0]
@@ -175,8 +178,7 @@ def corroborarRespuestaPreguntados(msg,posicion):
         return True
     else:
         return False
-    
-    
+
 def mesclarLista(lista):
     random.shuffle(lista)
     return lista
@@ -186,6 +188,12 @@ def buscarLista(n, lista):
         if lista[i] == n:
             return i
 
+
+
+
+
+
+##### MAIN #####
 def prenderBot(modo):
     aux = 0
     escribir("Bot Encendido")
@@ -207,7 +215,7 @@ def prenderBot(modo):
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!play preguntados: Jugar a preguntados'])
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados'])
                 elif '02' in respuesta:
                     break
                 elif '03' in respuesta:

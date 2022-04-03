@@ -192,7 +192,7 @@ def prenderBot(jugando):
                 if corroborarRespuestaPreguntados(getMensage(),pos):
                     respuesta = f"Respuesta Correcta!!!"
                 else:
-                    respuesta = f"Respuesta Incorrecta..."
+                    respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
                 jugando = 0
 
             if 'func' in respuesta:

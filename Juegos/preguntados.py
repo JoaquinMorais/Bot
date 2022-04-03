@@ -86,7 +86,3 @@ class Preguntados:
 
 
 
-preguntas = Preguntados()
-
-preguntas.Contar()
-print(preguntas.Jugar())

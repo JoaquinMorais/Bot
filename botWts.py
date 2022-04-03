@@ -6,28 +6,11 @@ import pyperclip as clip
 
 
 
+
 ub = 700,932
 barra = 700,1004
 
-"""
-time.sleep(2)
 
-
-try:
-    new_msg = pg.locateOnScreen('msg.png',confidence=.1)
-
-    if new_msg is not None:
-        pg.moveTo(new_msg)
-        pg.moveRel(-150,0)
-        pg.click()
-        time.sleep(.5)
-        print("New message detected")
-    else:
-        print("No new message detected")
-except:
-    print("Error")
-    pass
-"""
 
 def cleanMensage(s):
     replacements = (

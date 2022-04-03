@@ -55,11 +55,7 @@ def elegirRespuesta(msg):
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
     elif inList(mensage, ['jajaj','jsjsj','jajsj']):
         responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay','jajsjaj','jajajajja dios lpm']
-    elif inList(mensage, ['tu tia','tu prima']):
-        responses = ['la tuya con sandia']
-    elif inList(mensage, ['tu hermana']):
-        responses = ['la tuya con banana']
-    
+
     elif inList(mensage, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensage == 'chiste':
 
         responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
@@ -67,7 +63,7 @@ def elegirRespuesta(msg):
         'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D',
         'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro\n Por q primero el deber y despues la diversion']    
     
-    elif inList(mensage, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']):
+    elif inList(mensage, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']) or mensage == 'canta':
         
         responses = ['Vas a verme llegar\n Vas a oir mi cancion\n Vas a entrar sin pedirme la llaaaaaaveeeee\n La distancia del tiempo no sabe\n La falta q le haces\n A mi cooooraaaazoooooooooon',
         'Encontre al patito Juan\n Cuak Cuak Cuak\n En la esquina de San Juan\n Cuak Cuak Cuak', 'Paolooooo\n Le da Sabor a tu vida\n Paolo esta\n Desde el comienzo del diaaaaaaaa\n Mate cafe\n Harina y Palmitos...',
@@ -79,20 +75,40 @@ def elegirRespuesta(msg):
         'Ya no tiene escusa\n Hoy salio con su amiga dizque pa matar la tusa\n Que por q un hombre le pago mal\n Esta dura y abusa\n Se canso de ser buena, ahora es ella quien los usa\n Que por q un hombre le pago mal\n Ya no se le ve sentimental\n Dice q por otro man no llora\n Pero si le ponen la cancion\n Le da una depresion tontaaaaa',
         'Siempre camino flexin por la street\n Aunque la mirada este en mi\n Y ella me lo mueve con su swing\n Hmm, para Biza, Subime el autotune\n Siempre camino flexing por la street\n Aunque la mirada este en mi\n Y esa girl me tiene crazy con su swing\n Yeah no me puedo dormir',
         'Yeah\n Perdonen Hamehameha\n Despues del tema de tetris\n Viene Dragon Ball Rap\n Quien no haya visto seguido esta serie\n Es por q no tiene infancia\n Big Bang Attack\n Ataca desde el planeta Namek',
-        'Del espacio le llego algo muy especial\n Y lo agarro y todos sus secretos se sabran\n Con superpoderes el cambio y ahora es\n Ben 10\n Y si lo ves preparate pues te sorprendera\n En extraterrestre el se convertira\n Y el en un segundo se cambio y ahora es\n Ben 10\n Ben 10']
+        'Del espacio le llego algo muy especial\n Y lo agarro y todos sus secretos se sabran\n Con superpoderes el cambio y ahora es\n Ben 10\n Y si lo ves preparate pues te sorprendera\n En extraterrestre el se convertira\n Y el en un segundo se cambio y ahora es\n Ben 10\n Ben 10',
+        'Mientras siga viendo\n Tu cara en la cara de la luna\n Mientras siga escuchando tu voz\n Entre las olas\n Entre la espuma\n Mientras tenga q cambiar la radio de estacion\n Por q cada cancion me hable de ti, de ti, de ti\n Me hable de tiiiiiiiiiiii']
     
-    elif inList(mensage, ['xd']):
-        responses = ['xd']
-    elif inList(mensage, ['dou']):
-        responses = ['Douuu','Buenardo']
+    elif inList(mensage, ['tu tia','tu prima']):
+        responses = ['la tuya con sandia']
+    elif inList(mensage, ['tu hermana']):
+        responses = ['la tuya con banana']
+    elif inList(mensage, ['tu madre']):
+        responses = ['la tuya con vinagre']
     elif inList(mensage, ['puto']):
         responses = ['puto es tu hermano, trolo']
     elif inList(mensage, ['puta']):
         responses = ['puta es tu vieja >:(']
+    elif inList(mensage, ['tu mama','tu vieja']):	
+        responses = ['Ta re buena tu vieja']
+    elif inList(mensage, ['boludo','tonto','trolo','gay']):	
+        responses = ['Callate trolo','* Le saca la lengua *\n A casa pete','Amigo un bot putea mejor q vs, Mancooooooo']
+    elif inList(mensage, ['buitre']):	
+        responses = ['Noooo hablando de buitres pense en Juan :o']
+    elif inList(mensage, ['xd']):
+        responses = ['xd']
+    elif inList(mensage, ['dou']):
+        responses = ['Douuu','Buenaaaardoooo']
+    
     elif inList(mensage, ['vs','vos']):
         responses = ['bien bien aca ando','tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
+    elif inList(mensage, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
+        responses = ['byee, si puedes, pon !turnoff','descansa, si puedes, pon !turnoff','chauu, si puedes, pon !turnoff','despues hablamos, si puedes, pon !turnoff']
+    
     elif mensage == 'ping':
         responses = ['pong']
+    elif igual(mensage, ['bueno','oka','si','no','tambien']):
+        responses = ['si','si...']
+    
      
     return random.choice(responses)
 
@@ -110,7 +126,11 @@ def inList(mensage, lista):
         if i in mensage:
             return True
     return False
-
+def igual(mensage, lista):
+    for i in lista:
+        if i == mensage:
+            return True
+    return False
 
 
 

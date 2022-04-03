@@ -168,7 +168,6 @@ def prenderBot(jugando):
         aux+=1
         boolean = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
         
-        
         if boolean == False:
             
             if jugando == 0:
@@ -197,9 +196,6 @@ def prenderBot(jugando):
         time.sleep(1)
 
     escribir("Bot Apagado...")
-
-
-
 
 
 time.sleep(5)

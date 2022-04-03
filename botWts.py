@@ -34,8 +34,9 @@ def elegirRespuesta(msg):
     mensage = str(msg).lower()
     mensage = cleanMensage(mensage)
     print(f"mensaje recibido: {mensage}")
-    responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Simsimi un poroto al lado mio','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
+    responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Euuu Ya Pagaste El Monto','Simsimi un poroto al lado mio','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
     
+    #Comandos
     if '!' == mensage[0]:
         if mensage == '!help':
             return "func01"
@@ -47,7 +48,14 @@ def elegirRespuesta(msg):
             return "func03"
         else:
             return "ERROR: Comand not found"
-
+    
+    #Mensages Iguales
+    elif mensage == 'ping':
+        responses = ['pong']
+    elif igual(mensage, ['bueno','oka','si','no','tambien']):
+        responses = ['si','si...','Okas','Oka']
+    
+    #Mensages que contienen varias Opciones
     elif inList(mensage, ['hola','buenos dias','buenas tardes','buenas noches']) or mensage == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
     elif inList(mensage, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
@@ -81,6 +89,8 @@ def elegirRespuesta(msg):
         'Del espacio le llego algo muy especial\n Y lo agarro y todos sus secretos se sabran\n Con superpoderes el cambio y ahora es\n Ben 10\n Y si lo ves preparate pues te sorprendera\n En extraterrestre el se convertira\n Y el en un segundo se cambio y ahora es\n Ben 10\n Ben 10',
         'Mientras siga viendo\n Tu cara en la cara de la luna\n Mientras siga escuchando tu voz\n Entre las olas\n Entre la espuma\n Mientras tenga q cambiar la radio de estacion\n Por q cada cancion me hable de ti, de ti, de ti\n Me hable de tiiiiiiiiiiii']
     
+    elif inList(mensage, ['q monto','que monto']):
+        responses = ['Esta ;)','Estaaa, Uhhhh como te falto calle']
     elif inList(mensage, ['tu tia','tu prima']):
         responses = ['la tuya con sandia']
     elif inList(mensage, ['tu hermana']):
@@ -101,7 +111,9 @@ def elegirRespuesta(msg):
         responses = ['xd']
     elif inList(mensage, ['dou']):
         responses = ['Douuu','Buenaaaardoooo']
-    
+    elif inList(mensage, ['uwu','unu','owo']):
+        responses = ['uwu','unu','OwO']
+
     elif inList(mensage, ['vs','vos']):
         responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
     elif inList(mensage, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
@@ -110,11 +122,10 @@ def elegirRespuesta(msg):
         responses = ['Ci', 'Si','Probablemente :)']
     elif inList(mensage, ['no entiendo']):
         responses = ['Q no entendes?']
+    elif inList(mensage, ['gracias']):
+        responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
     
-    elif mensage == 'ping':
-        responses = ['pong']
-    elif igual(mensage, ['bueno','oka','si','no','tambien']):
-        responses = ['si','si...','Okas','Oka']
+    
     
      
     return random.choice(responses)

@@ -45,7 +45,10 @@ def elegirRespuesta(msg):
             return "func02"
         elif mensage == '!play preguntados':
             return "func03"
-    if inList(mensage, ['hola','buenos dias','buenas tardes','buenas noches']) or mensage == 'buenas':
+        else:
+            return "ERROR: Comand not found"
+
+    elif inList(mensage, ['hola','buenos dias','buenas tardes','buenas noches']) or mensage == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
     elif inList(mensage, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
         responses = ['Muy bien, vs?', 'Muy bien, gracias por preguntar.', 'Todo piola vs??']
@@ -100,14 +103,16 @@ def elegirRespuesta(msg):
         responses = ['Douuu','Buenaaaardoooo']
     
     elif inList(mensage, ['vs','vos']):
-        responses = ['bien bien aca ando','tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
+        responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
     elif inList(mensage, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
-        responses = ['byee, si puedes, pon !turnoff','descansa, si puedes, pon !turnoff','chauu, si puedes, pon !turnoff','despues hablamos, si puedes, pon !turnoff']
+        responses = ['Byee, si puedes, pon !turnoff','Descansa, si puedes, pon !turnoff','Chauu, si puedes, pon !turnoff','Despues hablamos, si puedes, pon !turnoff']
+    elif inList(mensage, ['me estas boludeando']):
+        responses = ['Ci', 'Si','Probablemente :)']
     
     elif mensage == 'ping':
         responses = ['pong']
     elif igual(mensage, ['bueno','oka','si','no','tambien']):
-        responses = ['si','si...']
+        responses = ['si','si...','Okas','Oka']
     
      
     return random.choice(responses)
@@ -181,23 +186,24 @@ def buscarLista(n, lista):
         if lista[i] == n:
             return i
 
-def prenderBot(jugando):
+def prenderBot(modo):
     aux = 0
     escribir("Bot Encendido")
     while True:
-        aux+=1
+        if modo==0:
+            aux+=1
         boolean = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
         
         if boolean == False:
             
-            if jugando == 0:
+            if modo == 0:
                 respuesta = elegirRespuesta(getMensage())
             else:
                 if corroborarRespuestaPreguntados(getMensage(),pos):
                     respuesta = f"Respuesta Correcta!!!"
                 else:
                     respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
-                jugando = 0
+                modo = 0
 
             if 'func' in respuesta:
                 if '01' in respuesta:
@@ -205,7 +211,7 @@ def prenderBot(jugando):
                 elif '02' in respuesta:
                     break
                 elif '03' in respuesta:
-                    jugando = 1
+                    modo = 1
                     pos =playPreguntados()
 
             else:

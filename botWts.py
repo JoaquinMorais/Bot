@@ -15,6 +15,7 @@ respuesta = []
 
 ub = 700,932
 barra = 700,1004
+ubChat = 542,263
 
 
 
@@ -66,6 +67,8 @@ def elegirRespuesta(msg):
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
     elif inList(mensage, ['jajaj','jsjsj','jajsj']):
         responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay','jajsjaj','jajajajja dios lpm','jajajajajjaj','jajjsjsjaj']
+    elif inList(mensage, ['mira vos']):
+        responses = ['Si mira vs che','Si es tremendo','Si :)']
 
     elif inList(mensage, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensage == 'chiste':
 
@@ -109,13 +112,14 @@ def elegirRespuesta(msg):
         responses = ['Noooo hablando de buitres pense en Juan :o']
     elif inList(mensage, ['xd']):
         responses = ['xd']
+    elif inList(mensage, ['nais','nois','nashe']):
+        responses = ['nais','naaaaiiiiis','nasheeee']
     elif inList(mensage, ['dou']):
         responses = ['Douuu','Buenaaaardoooo']
     elif inList(mensage, ['uwu','unu','owo']):
         responses = ['uwu','unu','OwO']
-
-    elif inList(mensage, ['vs','vos']):
-        responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
+    
+    
     elif inList(mensage, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
         responses = ['Byee, si puedes, pon !turnoff','Descansa, si puedes, pon !turnoff','Chauu, si puedes, pon !turnoff','Despues hablamos, si puedes, pon !turnoff']
     elif inList(mensage, ['me estas boludeando']):
@@ -124,9 +128,11 @@ def elegirRespuesta(msg):
         responses = ['Q no entendes?']
     elif inList(mensage, ['gracias']):
         responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
+    elif inList(mensage, ['._.','-.-',':)',':(',':D',':p']):
+        responses = ['._.','-.-',':)',':(',':D',':p']
     
-    
-    
+    elif inList(mensage, ['vs','vos']):
+        responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
      
     return random.choice(responses)
 
@@ -164,6 +170,13 @@ def escribirJunto(lista):
         pg.hotkey('shift','enter')
     
     pg.typewrite(f"\n")
+
+
+
+##### NUEVO CHAT #####
+def meterseChat():
+    pg.moveTo(ubChat[0]-300,ubChat[1])
+    pg.doubleClick()
 
 ##### PREGUNTADOS #####
 def playPreguntados():
@@ -205,15 +218,24 @@ def buscarLista(n, lista):
 
 
 ##### MAIN #####
-def prenderBot(modo):
+def prenderBot(modo,responder):
+
+    tiempoReaccion = 0.3
+
     aux = 0
     escribir("Bot Encendido")
     while True:
+        
+        
+        if responder and modo==0:
+            isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
+            meterseChat()
+        
         if modo==0:
             aux+=1
-        boolean = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
+        isNotMensageResivido = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
         
-        if boolean == False:
+        if isNotMensageResivido == False:
             
             if modo == 0:
                 respuesta = elegirRespuesta(getMensage())
@@ -236,12 +258,20 @@ def prenderBot(modo):
             else:
                 escribir(respuesta)
         
-        if(aux==180):
+        if aux== (180*tiempoReaccion*10): 
             break
-        time.sleep(1)
+        time.sleep(tiempoReaccion)
 
     escribir("Bot Apagado...")
 
 
 time.sleep(5)
-prenderBot(0)
+
+
+for i in range(10):
+    isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
+    print(f"isNuevoChat: {isNuevoChat}")
+    time.sleep(1)
+
+
+prenderBot(0,False)

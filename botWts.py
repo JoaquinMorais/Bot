@@ -104,6 +104,7 @@ def elegirRespuesta(msg):
         'La naranja se pasea\n De la sala al comedor\n No me tires con cuchillo\n Tirame con tenedor\n',
         'Mientras siga viendo\n Tu cara en la cara de la luna\n Mientras siga escuchando tu voz\n Entre las olas\n Entre la espuma\n Mientras tenga q cambiar la radio de estacion\n Por q cada cancion me hable de ti, de ti, de ti\n Me hable de tiiiiiiiiiiii']
     
+    #Insultos y respuestas 
     elif inList(mensaje, ['q monto','que monto']):
         responses = ['Esta ;)','Estaaa, Uhhhh como te falto calle']
     elif inList(mensaje, ['tu tia','tu prima']):
@@ -132,8 +133,8 @@ def elegirRespuesta(msg):
         responses = ['nais','naaaaiiiiis','nasheeee']
     elif inList(mensaje, ['dou','god','good','goood','gooood']):
         responses = ['Douuu','Buenaaaardoooo']
-    elif inList(mensaje, ['uwu','unu','owo']):
-        responses = ['uwu','unu','OwO']
+    elif inList(mensaje, ['uwu','unu','owo','lol']):
+        responses = ['uwu','unu','OwO','Uwu']
     elif inList(mensaje, ['boe','bue']):
         responses = ['Boe','Bue']
     elif inList(mensaje, ['xq','por q','porque','por que']):
@@ -203,8 +204,8 @@ def escribirJunto(lista):
 
 
 ##### NUEVO CHAT #####
-def meterseChat():
-    pg.moveTo(ubChat[0]-300,ubChat[1])
+def meterseChat(ubicacionX, ubicacionY):
+    pg.moveTo(ubicacionX-300,ubicacionY)
     pg.doubleClick()
 
 ##### PREGUNTADOS #####
@@ -247,7 +248,7 @@ def buscarLista(n, lista):
 
 
 ##### MAIN #####
-def prenderBot(modo,responder):
+def prenderBot(modo,responderNuevosChats):
 
     tiempoReaccion = 0.1
 
@@ -256,10 +257,16 @@ def prenderBot(modo,responder):
     while True:
         pos = 0
         
-        if responder and modo==0:
-            isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
-            if isNuevoChat:
-                meterseChat()
+        if responderNuevosChats and modo==0:
+            isNuevoChat1 = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
+            isNuevoChat2 = pg.pixelMatchesColor(ubChat[0],(ubChat[1]+70),(0,168,132))
+            isNuevoChat3 = pg.pixelMatchesColor(ubChat[0],(ubChat[1]+140),(0,168,132))
+            if isNuevoChat1:
+                meterseChat(ubChat[0],ubChat[1])
+            elif isNuevoChat2:
+                meterseChat(ubChat[0],ubChat[1]+70)
+            elif isNuevoChat3:
+                meterseChat(ubChat[0],ubChat[1]+140)
         
         if modo==0:
             aux+=1
@@ -283,12 +290,12 @@ def prenderBot(modo,responder):
                 if '01' in respuesta:
                     escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados'])
                 elif '02' in respuesta:
-                    break
-                    #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    #break
+                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
                 elif '03' in respuesta:
-                    #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
-                    modo = 1
-                    pos =playPreguntados()
+                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    #modo = 1
+                    #pos =playPreguntados()
 
             else:
                 escribir(respuesta)
@@ -302,6 +309,4 @@ def prenderBot(modo,responder):
 
 
 #time.sleep(5)
-
-
 #prenderBot(0,False)

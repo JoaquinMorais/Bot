@@ -244,7 +244,7 @@ def prenderBot(modo,responder):
                 try:
                     respuesta = elegirRespuesta(getMensaje())
                 except:
-                    respuesta = "ERROR: "
+                    respuesta = "ERROR: Ilegal value"
             else:
                 if corroborarRespuestaPreguntados(getMensaje(),pos):
                     respuesta = f"Respuesta Correcta!!!"

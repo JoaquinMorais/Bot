@@ -128,12 +128,15 @@ def elegirRespuesta(msg):
         responses = ['Q no entendes?']
     elif inList(mensage, ['gracias']):
         responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
+    
     elif inList(mensage, ['._.','-.-',':)',':(',':D',':p']):
         responses = ['._.','-.-',':)',':(',':D',':p']
     
     elif inList(mensage, ['vs','vos']):
         responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
-     
+    elif inList(mensage, ['queso','q es eso']):
+        responses = ['un hueso','un peso','Queso']
+
     return random.choice(responses)
 
 
@@ -229,7 +232,8 @@ def prenderBot(modo,responder):
         
         if responder and modo==0:
             isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
-            meterseChat()
+            if isNuevoChat:
+                meterseChat()
         
         if modo==0:
             aux+=1
@@ -258,7 +262,7 @@ def prenderBot(modo,responder):
             else:
                 escribir(respuesta)
         
-        if aux== (180*tiempoReaccion*10): 
+        if aux== (300*tiempoReaccion*10): 
             break
         time.sleep(tiempoReaccion)
 
@@ -266,12 +270,6 @@ def prenderBot(modo,responder):
 
 
 time.sleep(5)
-
-
-for i in range(10):
-    isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
-    print(f"isNuevoChat: {isNuevoChat}")
-    time.sleep(1)
 
 
 prenderBot(0,False)

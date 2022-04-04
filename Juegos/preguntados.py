@@ -13,7 +13,7 @@ class Preguntados:
         '¿Cual es el pais mas pequeño del mundo?',
         '¿Cual es la capital de Canada?',
         'Cual es la cordillera mas larga (no mas alta) del mundo?',
-        '¿Donde se encuentra la fosa mas profunda del oceano?',
+        '¿Cual es la fosa mas profunda del mundo?',
         '¿Cual es el rio mas largo del mundo?',
         '¿Cual es la serie de libros mejor vendida del siglo 21?',
         '¿Cual es el idioma que tiene mas palabras (segun su diccionario)?',

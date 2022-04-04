@@ -275,4 +275,3 @@ time.sleep(5)
 
 
 prenderBot(0,False)
-mensage

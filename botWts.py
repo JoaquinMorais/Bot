@@ -1,4 +1,3 @@
-from http.client import responses
 import pyautogui as pg
 import time
 import random, re
@@ -19,7 +18,7 @@ ubChat = 542,263
 
 
 
-def cleanMensage(s):
+def cleanMensaje(s):
     replacements = (
         ("á", "a"),
         ("é", "e"),
@@ -32,52 +31,52 @@ def cleanMensage(s):
     return s
 
 def elegirRespuesta(msg):
-    mensage = str(msg).lower()
-    mensage = cleanMensage(mensage)
-    print(f"mensaje recibido: {mensage}")
+    mensaje = str(msg).lower()
+    mensaje = cleanMensaje(mensaje)
+    print(f"mensaje recibido: {mensaje}")
     responses = ['Ehh Mesi','Aun no entiendo eso, pero con !help tal vez pueda ayudarte ;)','Euuu Ya Pagaste El Monto','Simsimi un poroto al lado mio','Veremos dijo el ciego','No puedo tengo fulbo','Perdon, no entiendo','La tuya por si acaso','No entendi pero habia una vez un choclo que iba andando en auto y choclo y murio xd','Uhhh no entendi, Estoy mas perdido q ciego en laberinto','Pao es gay','Sorry aun estoy en modo Mati y no soy capas de entender la poronga q me acabas de decir :(']
     
     #Comandos
-    if '!' == mensage[0]:
-        if mensage == '!help':
+    if '!' == mensaje[0]:
+        if mensaje == '!help':
             return "func01"
-        elif mensage == '!hola':
+        elif mensaje == '!hola':
             return "Hola!!! Soy un bot de prueba, escribiendo '!help' te daré una lista de comandos"
-        elif mensage == '!turnoff':
+        elif mensaje == '!turnoff':
             return "func02"
-        elif mensage == '!preguntados':
+        elif mensaje == '!preguntados':
             return "func03"
         else:
             return "ERROR: Comand not found"
     
-    #Mensages Iguales
-    elif mensage == 'ping':
+    #Mensajes Iguales
+    elif mensaje == 'ping':
         responses = ['pong']
-    elif igual(mensage, ['bueno','oka','si','no','tambien']):
+    elif igual(mensaje, ['bueno','oka','si','no','tambien']):
         responses = ['si','si...','Okas','Oka']
     
-    #Mensages que contienen varias Opciones
-    elif inList(mensage, ['hola','buenos dias','buenas tardes','buenas noches']) or mensage == 'buenas':
+    #Mensajes que contienen varias Opciones
+    elif inList(mensaje, ['hola','buenos dias','buenas tardes','buenas noches']) or mensaje == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
-    elif inList(mensage, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
+    elif inList(mensaje, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
         responses = ['Muy bien, vs?', 'Muy bien, gracias por preguntar.', 'Todo piola vs??']
-    elif inList(mensage, ['q haces','que haces','nada vs','nada vos','q estas haciendo','que estas haciendo','q te contas','que te contas']):
+    elif inList(mensaje, ['q haces','que haces','nada vs','nada vos','q estas haciendo','que estas haciendo','q te contas','que te contas']):
         responses = ['Aca tranqui, Vs?', 'Molestando a Gucci vs?', 'Aca Hablando con un boludo :D\n Nooo estaba re enojado el bot']
-    elif inList(mensage, ['cuantos años tenes','cual es tu edad','cuando naciste']):
+    elif inList(mensaje, ['cuantos años tenes','cual es tu edad','cuando naciste']):
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
-    elif inList(mensage, ['jajaj','jsjsj','jajsj']):
+    elif inList(mensaje, ['jajaj','jsjsj','jajsj']):
         responses = ['Jajajajaj', 'Jajsjsaj', 'Q te reis gay','jajsjaj','jajajajja dios lpm','jajajajajjaj','jajjsjsjaj']
-    elif inList(mensage, ['mira vos']):
+    elif inList(mensaje, ['mira vos']):
         responses = ['Si mira vs che','Si es tremendo','Si :)']
 
-    elif inList(mensage, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensage == 'chiste':
+    elif inList(mensaje, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensaje == 'chiste':
 
         responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
         'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D',
         'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D',
         'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro, Por q primero el deber y despues la diversion']    
     
-    elif inList(mensage, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']) or mensage == 'canta':
+    elif inList(mensaje, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']) or mensaje == 'canta':
         
         responses = ['Vas a verme llegar\n Vas a oir mi cancion\n Vas a entrar sin pedirme la llaaaaaaveeeee\n La distancia del tiempo no sabe\n La falta q le haces\n A mi cooooraaaazoooooooooon',
         'Encontre al patito Juan\n Cuak Cuak Cuak\n En la esquina de San Juan\n Cuak Cuak Cuak', 'Paolooooo\n Le da Sabor a tu vida\n Paolo esta\n Desde el comienzo del diaaaaaaaa\n Mate cafe\n Harina y Palmitos...',
@@ -92,55 +91,55 @@ def elegirRespuesta(msg):
         'Del espacio le llego algo muy especial\n Y lo agarro y todos sus secretos se sabran\n Con superpoderes el cambio y ahora es\n Ben 10\n Y si lo ves preparate pues te sorprendera\n En extraterrestre el se convertira\n Y el en un segundo se cambio y ahora es\n Ben 10\n Ben 10',
         'Mientras siga viendo\n Tu cara en la cara de la luna\n Mientras siga escuchando tu voz\n Entre las olas\n Entre la espuma\n Mientras tenga q cambiar la radio de estacion\n Por q cada cancion me hable de ti, de ti, de ti\n Me hable de tiiiiiiiiiiii']
     
-    elif inList(mensage, ['q monto','que monto']):
+    elif inList(mensaje, ['q monto','que monto']):
         responses = ['Esta ;)','Estaaa, Uhhhh como te falto calle']
-    elif inList(mensage, ['tu tia','tu prima']):
+    elif inList(mensaje, ['tu tia','tu prima']):
         responses = ['la tuya con sandia']
-    elif inList(mensage, ['tu hermana']):
+    elif inList(mensaje, ['tu hermana']):
         responses = ['la tuya con banana']
-    elif inList(mensage, ['tu madre']):
+    elif inList(mensaje, ['tu madre']):
         responses = ['la tuya con vinagre']
-    elif inList(mensage, ['puto']):
+    elif inList(mensaje, ['puto']):
         responses = ['puto es tu hermano, trolo']
-    elif inList(mensage, ['puta']):
+    elif inList(mensaje, ['puta']):
         responses = ['puta es tu vieja >:(']
-    elif inList(mensage, ['tu mama','tu vieja']):	
+    elif inList(mensaje, ['tu mama','tu vieja']):	
         responses = ['Ta re buena tu vieja']
-    elif inList(mensage, ['boludo','tonto','trolo','gay']):	
+    elif inList(mensaje, ['boludo','tonto','trolo','gay']):	
         responses = ['Callate trolo','* Le saca la lengua *\n A casa pete','Amigo un bot putea mejor q vs, Mancooooooo']
-    elif inList(mensage, ['buitre']):	
+    elif inList(mensaje, ['buitre']):	
         responses = ['Noooo hablando de buitres pense en Juan :o']
-    elif inList(mensage, ['xd']):
+    elif inList(mensaje, ['xd']):
         responses = ['xd']
-    elif inList(mensage, ['nais','nois','nashe']):
+    elif inList(mensaje, ['nais','nois','nashe']):
         responses = ['nais','naaaaiiiiis','nasheeee']
-    elif inList(mensage, ['dou']):
+    elif inList(mensaje, ['dou']):
         responses = ['Douuu','Buenaaaardoooo']
-    elif inList(mensage, ['uwu','unu','owo']):
+    elif inList(mensaje, ['uwu','unu','owo']):
         responses = ['uwu','unu','OwO']
     
     
-    elif inList(mensage, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
+    elif inList(mensaje, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
         responses = ['Byee, si puedes, pon !turnoff','Descansa, si puedes, pon !turnoff','Chauu, si puedes, pon !turnoff','Despues hablamos, si puedes, pon !turnoff']
-    elif inList(mensage, ['me estas boludeando']):
+    elif inList(mensaje, ['me estas boludeando']):
         responses = ['Ci', 'Si','Probablemente :)']
-    elif inList(mensage, ['no entiendo']):
+    elif inList(mensaje, ['no entiendo']):
         responses = ['Q no entendes?']
-    elif inList(mensage, ['gracias']):
+    elif inList(mensaje, ['gracias']):
         responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
     
-    elif inList(mensage, ['._.','-.-',':)',':(',':D',':p']):
+    elif inList(mensaje, ['._.','-.-',':)',':(',':D',':p']):
         responses = ['._.','-.-',':)',':(',':D',':p']
     
-    elif inList(mensage, ['vs','vos']):
+    elif inList(mensaje, ['vs','vos']):
         responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
-    elif inList(mensage, ['queso','q es eso']):
+    elif inList(mensaje, ['queso','q es eso']):
         responses = ['un hueso','un peso','Queso']
 
     return random.choice(responses)
 
 
-def getMensage():
+def getMensaje():
     pg.moveTo(ub)
     pg.tripleClick()
     pg.hotkey('ctrl','c')
@@ -148,14 +147,14 @@ def getMensage():
     pg.click()
     return msg
 
-def inList(mensage, lista):
+def inList(mensaje, lista):
     for i in lista:
-        if i in mensage:
+        if i in mensaje:
             return True
     return False
-def igual(mensage, lista):
+def igual(mensaje, lista):
     for i in lista:
-        if i == mensage:
+        if i == mensaje:
             return True
     return False
 
@@ -198,10 +197,10 @@ def playPreguntados():
     return posicion
 
 def corroborarRespuestaPreguntados(msg,posicion):
-    mensage = str(msg).lower()
-    mensage = cleanMensage(mensage)
-    print(f"mensaje recibido: {mensage}")
-    if mensage == str(posicion+1):
+    mensaje = str(msg).lower()
+    mensaje = cleanMensaje(mensaje)
+    print(f"mensaje recibido: {mensaje}")
+    if mensaje == str(posicion+1):
         return True
     else:
         return False
@@ -237,14 +236,17 @@ def prenderBot(modo,responder):
         
         if modo==0:
             aux+=1
-        isNotMensageResivido = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
+        isNotMensajeResivido = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
         
-        if isNotMensageResivido == False:
+        if isNotMensajeResivido == False:
             
             if modo == 0:
-                respuesta = elegirRespuesta(getMensage())
+                try:
+                    respuesta = elegirRespuesta(getMensaje())
+                except:
+                    respuesta = "ERROR: "
             else:
-                if corroborarRespuestaPreguntados(getMensage(),pos):
+                if corroborarRespuestaPreguntados(getMensaje(),pos):
                     respuesta = f"Respuesta Correcta!!!"
                 else:
                     respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
@@ -273,3 +275,4 @@ time.sleep(5)
 
 
 prenderBot(0,False)
+mensage

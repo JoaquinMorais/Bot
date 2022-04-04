@@ -262,17 +262,17 @@ def prenderBot(modo,responder):
                 if '01' in respuesta:
                     escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados'])
                 elif '02' in respuesta:
-                    #break
-                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    break
+                    #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
                 elif '03' in respuesta:
-                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
-                    #modo = 1
-                    #pos =playPreguntados()
+                    #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    modo = 1
+                    pos =playPreguntados()
 
             else:
                 escribir(respuesta)
         
-        if aux== (180*tiempoReaccion*10): 
+        if aux== (300*tiempoReaccion*10): 
             break
         time.sleep(tiempoReaccion)
 

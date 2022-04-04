@@ -7,6 +7,9 @@ from Juegos.preguntados import Preguntados
 
 
 preguntados = Preguntados()
+archivo = open("InformacionParaAprender.txt","a")
+
+
 
 
 correcta = ""
@@ -157,7 +160,8 @@ def elegirRespuesta(msg):
         responses = ['un hueso','un peso','Queso']
     elif inList(mensaje, ['negraso']):
         responses = ['Negro tengo el culo :p']
-
+    else:
+        archivo.write(f"{mensaje}\n")
 
     return random.choice(responses)
 
@@ -294,9 +298,10 @@ def prenderBot(modo,responder):
         time.sleep(tiempoReaccion)
 
     escribir("Bot Apagado...")
+    archivo.close()
 
 
-time.sleep(5)
+#time.sleep(5)
 
 
-prenderBot(0,False)
+#prenderBot(0,False)

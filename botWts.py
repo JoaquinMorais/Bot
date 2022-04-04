@@ -56,6 +56,10 @@ def elegirRespuesta(msg):
         responses = ['si','si...','Okas','Oka']
     
     #Mensajes que contienen varias Opciones
+    elif inList(mensaje, ['hola','buenas tardes','buenos dias']) and inList(mensaje, ['q haces','que haces','q contas','q onda','que onda','que contas']):
+        responses = ['Hola buenas tardes, Ando trabajando vs??', 'Hola, que tal, aca mirando una peli vs??', 'Holaa, nada vs??']
+    elif inList(mensaje, ['hola','buenas tardes','buenos dias']) and inList(mensaje, ['como estas','como te encontras','como te fue']):
+        responses = ['Hola buenas tardes, bien bien vs??', 'Holaaaaaa, biennn aca laburando vs??', 'Buenaaas, bien vs??']
     elif inList(mensaje, ['hola','buenos dias','buenas tardes','buenas noches']) or mensaje == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
     elif inList(mensaje, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
@@ -72,9 +76,10 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensaje == 'chiste':
 
         responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
-        'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D',
-        'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D',
-        'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro, Por q primero el deber y despues la diversion']    
+        'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D','Q pasa si tiras un pato al agua\n Nada.','Te gustan las mujeres con muchas tetas??\n Yyyy la verdad con mas de 2 me dan asco',
+        'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D','Buenas tardes soy Rosa\n Ah, perdoname es q soy Daltonico','¿Como te llamas?\n Lancelot\n Pues Atrapalot','Papa Papa, q esta mas lejos desde casa Buenos Aires o la luna\n A ver hijo desde aca vs ves Buenos Aires o la Luna >:(',
+        'Cuanto calza un discapacitado??\n Rodado 26 :D','Que le dijo un cura a otro cura??\n Te cambio dos de 5 por una de 10','Por q nunca disparan misiles en africa??\n Por q no encuentran el punto blanco','Cual es el cafe mas peligroso??\n El ex-preso','Soldado, ice la bandera\n Fuaaa le quedo hermosa','',
+        'A quien mata primero un nazi, A un Negro o a un Judio??\n Primero al judio y despues al negro, Por q primero el deber y despues la diversion','Por q 20 y 22 en ingles son iguales\n Por q en ingles 20 es twenty y 22 es twenty too :D','Tu vida :D tremendo chiste xd','Por q la reina es la pieza q mayor mobilidad tiene en el ajedrez?\n Por q el suelo parece piso de cocina']    
     
     elif inList(mensaje, ['cantas una cancion','cantas algo','otra cancion','sabes una cancion','canta una cancion','cantame']) or mensaje == 'canta':
         
@@ -89,7 +94,7 @@ def elegirRespuesta(msg):
         'Siempre camino flexin por la street\n Aunque la mirada este en mi\n Y ella me lo mueve con su swing\n Hmm, para Biza, Subime el autotune\n Siempre camino flexing por la street\n Aunque la mirada este en mi\n Y esa girl me tiene crazy con su swing\n Yeah no me puedo dormir',
         'Yeah\n Perdonen Hamehameha\n Despues del tema de tetris\n Viene Dragon Ball Rap\n Quien no haya visto seguido esta serie\n Es por q no tiene infancia\n Big Bang Attack\n Ataca desde el planeta Namek',
         'Del espacio le llego algo muy especial\n Y lo agarro y todos sus secretos se sabran\n Con superpoderes el cambio y ahora es\n Ben 10\n Y si lo ves preparate pues te sorprendera\n En extraterrestre el se convertira\n Y el en un segundo se cambio y ahora es\n Ben 10\n Ben 10',
-        'La naranja se pasea\n De la sala al comedor\n No me tires con cuchillo\n Tirame con tenedor\n ',
+        'La naranja se pasea\n De la sala al comedor\n No me tires con cuchillo\n Tirame con tenedor\n',
         'Mientras siga viendo\n Tu cara en la cara de la luna\n Mientras siga escuchando tu voz\n Entre las olas\n Entre la espuma\n Mientras tenga q cambiar la radio de estacion\n Por q cada cancion me hable de ti, de ti, de ti\n Me hable de tiiiiiiiiiiii']
     
     elif inList(mensaje, ['q monto','que monto']):
@@ -223,12 +228,12 @@ def buscarLista(n, lista):
 ##### MAIN #####
 def prenderBot(modo,responder):
 
-    tiempoReaccion = 0.3
+    tiempoReaccion = 0.1
 
     aux = 0
     escribir("Bot Encendido")
     while True:
-        
+        pos = 0
         
         if responder and modo==0:
             isNuevoChat = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
@@ -257,10 +262,12 @@ def prenderBot(modo,responder):
                 if '01' in respuesta:
                     escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados'])
                 elif '02' in respuesta:
-                    break
+                    #break
+                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
                 elif '03' in respuesta:
-                    modo = 1
-                    pos =playPreguntados()
+                    escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    #modo = 1
+                    #pos =playPreguntados()
 
             else:
                 escribir(respuesta)

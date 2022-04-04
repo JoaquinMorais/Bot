@@ -2,15 +2,15 @@ import random
 
 
 class Preguntados:
-    def __init__(self):	
+    def __init__(self):
         self.preguntas = ['¿Cuantas zonas horarias tiene en Rusia?',
         '¿Cuantas franjas tiene la bandera de Estados Unidos?',
         '¿Cual es el animal nacional de Australia?',
-        'En un Año viciesto, ¿Cuantos dias le toma a la tierra dar una vuelta a la orbita del sol?',
+        'En un Anio viciesto, ¿Cuantos dias le toma a la tierra dar una vuelta a la orbita del sol?',
         '¿Cual de los siguientes imperios no tenia un idioma escrito?',
         '¿Como se llamaba Istanbul antes de 1923?',
         '¿Que pais tiene la mayor cantidad de islas en el mundo? (Mas de 220.000!!!)',
-        '¿Cual es el pais mas pequeño del mundo?',
+        '¿Cual es el pais mas pequenio del mundo?',
         '¿Cual es la capital de Canada?',
         'Cual es la cordillera mas larga (no mas alta) del mundo?',
         '¿Cual es la fosa mas profunda del mundo?',
@@ -29,7 +29,7 @@ class Preguntados:
         '¿Que equipo de futbol se le conoce como ‘The Red Devils’?',
         '¿Que conductor de la Formula 1 ha ganado mas campeonatos?',
         '¿Originalmente como se llamaba la marca Nike?',
-        '¿En que año se fundo Netflix?',
+        '¿Cuando se fundo Netflix?',
         '¿Cual fue la serie mas vista en Netflix en el 2019?',
         '¿Como se llama la iconica cafeteria de Friends?',
         '¿Cual fue la primer pelicula de Disney?',
@@ -51,8 +51,8 @@ class Preguntados:
         ['Los Andes','Cordillera de Alaska ','Los Alpes','Sierra Madre'],
         ['Fosa De Las Marinas','Fosa de Kermadec','Fosa de las Kuriles','Fosa de Filipinas'],
         ['Amazonas ','Nilo','Yangtsé','Misisipi'],
-        ['Harry Potter','El Señor De Los Anillos','El Principito','Crepusculo'],
-        ['Ingles','Español','Chino','Portugues'],
+        ['Harry Potter','El Senior De Los Anillos','El Principito','Crepusculo'],
+        ['Ingles','Espaniol','Chino','Portugues'],
         ['El Grito','La Gioconda (La Mona Lisa)','La Noche Estrellada','El Nacimiento De Venus'],
         ['Miguel Angel','Diego Velazquez','Leonardo Da Vinci','Pablo Picasso'],
         ['1863','1845','1893','1874'],

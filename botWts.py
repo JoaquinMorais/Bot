@@ -264,7 +264,7 @@ def prenderBot(modo,responder):
             else:
                 escribir(respuesta)
         
-        if aux== (300*tiempoReaccion*10): 
+        if aux== (180*tiempoReaccion*10): 
             break
         time.sleep(tiempoReaccion)
 

@@ -52,8 +52,10 @@ def elegirRespuesta(msg):
     #Mensajes Iguales
     elif mensaje == 'ping':
         responses = ['pong']
-    elif igual(mensaje, ['bueno','oka','si','no','tambien']):
+    elif igual(mensaje, ['bueno','oka','si','tambien']):
         responses = ['si','si...','Okas','Oka']
+    elif igual(mensaje, ['no','no se']):
+        responses = ['mmm','si...','Hmm',':(']
     
     #Mensajes que contienen varias Opciones
     elif inList(mensaje, ['hola','buenas tardes','buenos dias']) and inList(mensaje, ['q haces','que haces','q contas','q onda','que onda','que contas']):
@@ -62,10 +64,12 @@ def elegirRespuesta(msg):
         responses = ['Hola buenas tardes, bien bien vs??', 'Holaaaaaa, biennn aca laburando vs??', 'Buenaaas, bien vs??']
     elif inList(mensaje, ['hola','buenos dias','buenas tardes','buenas noches']) or mensaje == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
-    elif inList(mensaje, ['como estas','como andas','como te encontras','todo bien?','como te encontras']):
+    elif inList(mensaje, ['como estas','como andas','como te encontras','todo bien','como te encontras']):
         responses = ['Muy bien, vs?', 'Muy bien, gracias por preguntar.', 'Todo piola vs??']
     elif inList(mensaje, ['q haces','que haces','nada vs','nada vos','q estas haciendo','que estas haciendo','q te contas','que te contas']):
         responses = ['Aca tranqui, Vs?', 'Molestando a Gucci vs?', 'Aca Hablando con un boludo :D\n Nooo estaba re enojado el bot']
+    elif inList(mensaje, ['todo piola','bien']):
+        responses = ['Mejor me alegro :)', 'Me alegro :D', 'Mejor :p']
     elif inList(mensaje, ['cuantos años tenes','cual es tu edad','cuando naciste']):
         responses = ['Recien Naci', 'Hace un par de horas', 'Un Milenio']
     elif inList(mensaje, ['jajaj','jsjsj','jajsj']):
@@ -106,24 +110,34 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['tu madre']):
         responses = ['la tuya con vinagre']
     elif inList(mensaje, ['puto']):
-        responses = ['puto es tu hermano, trolo']
+        responses = ['puto es tu hermano, trolo','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp']
     elif inList(mensaje, ['puta']):
-        responses = ['puta es tu vieja >:(']
+        responses = ['puta es tu vieja >:(','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp','Q decis Pete']
+    elif inList(mensaje, ['chupala','gil','chupalo','fuck u','fuck you','pelotudo']):
+        responses = ['Chupala gil','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp','Q decis Pete','fuck u','pelotudo de cuarta']
+    elif inList(mensaje, ['de tu vieja']):	
+        responses = ['Y yo de la tuya Pete']
     elif inList(mensaje, ['tu mama','tu vieja']):	
         responses = ['Ta re buena tu vieja']
     elif inList(mensaje, ['boludo','tonto','trolo','gay']):	
         responses = ['Callate trolo','* Le saca la lengua *\n A casa pete','Amigo un bot putea mejor q vs, Mancooooooo']
     elif inList(mensaje, ['buitre']):	
-        responses = ['Noooo hablando de buitres pense en Juan :o']
+        responses = ['Noooo hablando de buitres aparecio Juan']
     elif inList(mensaje, ['xd']):
         responses = ['xd']
     elif inList(mensaje, ['nais','nois','nashe']):
         responses = ['nais','naaaaiiiiis','nasheeee']
-    elif inList(mensaje, ['dou']):
+    elif inList(mensaje, ['dou','god','good','goood','gooood']):
         responses = ['Douuu','Buenaaaardoooo']
     elif inList(mensaje, ['uwu','unu','owo']):
         responses = ['uwu','unu','OwO']
-    
+    elif inList(mensaje, ['boe','bue']):
+        responses = ['Boe','Bue']
+    elif inList(mensaje, ['xq','por q','porque','por que']):
+        responses = ['No lo se :(','Ni idea']
+    elif inList(mensaje, ['te odio','te amo','te quiero']):
+        responses = ['y yo a vs <3','yo mas <3']
+
     
     elif inList(mensaje, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
         responses = ['Byee, si puedes, pon !turnoff','Descansa, si puedes, pon !turnoff','Chauu, si puedes, pon !turnoff','Despues hablamos, si puedes, pon !turnoff']
@@ -134,13 +148,16 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['gracias']):
         responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
     
-    elif inList(mensaje, ['._.','-.-',':)',':(',':D',':p']):
+    elif inList(mensaje, ['._.','-.-',':)',':(',':D',':p','mmm','hmm']):
         responses = ['._.','-.-',':)',':(',':D',':p']
     
     elif inList(mensaje, ['vs','vos']):
-        responses = ['Bien bien aca ando','Estoy Tan aburrido que voy a crear un bot para yo no poder trabajar mas :D, va a ser el bot del bot']
+        responses = ['Bien bien aca ando','Bieeenn aca laburando :)']
     elif inList(mensaje, ['queso','q es eso']):
         responses = ['un hueso','un peso','Queso']
+    elif inList(mensaje, ['negraso']):
+        responses = ['Negro tengo el culo :p']
+
 
     return random.choice(responses)
 
@@ -272,7 +289,7 @@ def prenderBot(modo,responder):
             else:
                 escribir(respuesta)
         
-        if aux== (300*tiempoReaccion*10): 
+        if aux== (3000): 
             break
         time.sleep(tiempoReaccion)
 

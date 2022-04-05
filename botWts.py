@@ -17,7 +17,7 @@ respuesta = []
 
 ub = 700,932
 barra = 700,1004
-ubChat = 542,263
+ubChat = 542,(262+70)
 
 
 
@@ -63,7 +63,7 @@ def elegirRespuesta(msg):
     #Mensajes que contienen varias Opciones
     elif inList(mensaje, ['hola','buenas tardes','buenos dias']) and inList(mensaje, ['q haces','que haces','q contas','q onda','que onda','que contas']):
         responses = ['Hola buenas tardes, Ando trabajando vs??', 'Hola, que tal, aca mirando una peli vs??', 'Holaa, nada vs??']
-    elif inList(mensaje, ['hola','buenas tardes','buenos dias']) and inList(mensaje, ['como estas','como te encontras','como te fue']):
+    elif inList(mensaje, ['hol','buenas tardes','buenos dias']) and inList(mensaje, ['como estas','como te encontras','como te fue']):
         responses = ['Hola buenas tardes, bien bien vs??', 'Holaaaaaa, biennn aca laburando vs??', 'Buenaaas, bien vs??']
     elif inList(mensaje, ['hola','buenos dias','buenas tardes','buenas noches']) or mensaje == 'buenas':
         responses = ['Holaa', 'Hola, que tal?', 'Holaa, como estas?', 'Holaa, que haces?','Tu nariz contra mis bolas']
@@ -80,9 +80,9 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['mira vos']):
         responses = ['Si mira vs che','Si es tremendo','Si :)']
 
-    elif inList(mensaje, ['contas un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensaje == 'chiste':
+    elif inList(mensaje, ['contas un chiste','decime un chiste','decis un chiste','conta un chiste','contame un chiste','contar un chiste','haces un chiste']) or mensaje == 'chiste':
 
-        responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz','En q se diferencia una feminista de un pokemon?\n Q los pokemones si evolucionan :D',
+        responses = ['habia una vez un pollito q respiraba por el culito, se sento y se murio','habia una vez truz',
         'Sabes q te estas haciendo mayor cuando pasas por una iglesia y el cura no te guiña el ojo','Si un venezolano dice q sera pan comido, sera facil o dificil???','Si vas a comprar una leche siempre compra 1 o 2, Por q la tercera es la vencida :D','Q pasa si tiras un pato al agua\n Nada.','Te gustan las mujeres con muchas tetas??\n Yyyy la verdad con mas de 2 me dan asco',
         'Por q a un ladron lo entierran a 200 metros bajo tierra, por q en el fondo es bueno :D','Donde deja superman su capa? En su perchero :D','Sabes como le dicen a la hermana de Pao? Semaforo por q despues de las 12 nadie la respeta :D','Buenas tardes soy Rosa\n Ah, perdoname es q soy Daltonico','¿Como te llamas?\n Lancelot\n Pues Atrapalot','Papa Papa, q esta mas lejos desde casa Buenos Aires o la luna\n A ver hijo desde aca vs ves Buenos Aires o la Luna >:(',
         'Cuanto calza un discapacitado??\n Rodado 26 :D','Que le dijo un cura a otro cura??\n Te cambio dos de 5 por una de 10','Por q nunca disparan misiles en africa??\n Por q no encuentran el punto blanco','Cual es el cafe mas peligroso??\n El ex-preso','Soldado, ice la bandera\n Fuaaa le quedo hermosa','',
@@ -117,8 +117,8 @@ def elegirRespuesta(msg):
         responses = ['puto es tu hermano, trolo','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp']
     elif inList(mensaje, ['puta']):
         responses = ['puta es tu vieja >:(','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp','Q decis Pete']
-    elif inList(mensaje, ['chupala','gil','chupalo','fuck u','fuck you','pelotudo']):
-        responses = ['Chupala gil','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp','Q decis Pete','fuck u','pelotudo de cuarta']
+    elif inList(mensaje, ['chupala','imbecil','gil','chupalo','fuck u','fuck you','pelotudo','lcdtm']):
+        responses = ['Chupala gil','imbecil','Cerra el ocote la recalcada concha de tu hermana y la reputisima madre que te remil pario :3','Q decis mogolico','Q decis termotanque de grasa','Dale baja cagon si te animas Lpqtp','Q decis Hdp','Q decis Pete','fuck u','pelotudo de cuarta']
     elif inList(mensaje, ['de tu vieja']):	
         responses = ['Y yo de la tuya Pete']
     elif inList(mensaje, ['tu mama','tu vieja']):	
@@ -140,7 +140,7 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['xq','por q','porque','por que']):
         responses = ['No lo se :(','Ni idea']
     elif inList(mensaje, ['te odio','te amo','te quiero']):
-        responses = ['y yo a vs <3','yo mas <3']
+        responses = ['y yo a vs :3','yo mas :3']
 
     
     elif inList(mensaje, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
@@ -152,15 +152,74 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['gracias']):
         responses = ['de nada :)','no hay problema :3','no hay problema :D',':3','un placer :p']
     
-    elif inList(mensaje, ['._.','-.-',':)',':(',':D',':p','mmm','hmm']):
+    elif inList(mensaje, ['._.','-.-',':)',':(',':D',':p','mmm','hmm','ou']):
         responses = ['._.','-.-',':)',':(',':D',':p']
-    
+    elif inList(mensaje, ['callame']):
+        responses = ['Ehhhhh no puedo tengo fulbo','Ay... * se sonroja *','Uwu']
+    elif inList(mensaje, ['ptm','lpm','lcdll','lrpmqmrp','lrpmqmp','mal']):
+        responses = ['Si Lcdll','Lpmqmp','lpm','ptm']
+    elif inList(mensaje, ['okok','oka','ok']):
+        responses = ['okok','Oka :)']
     elif inList(mensaje, ['vs','vos']):
         responses = ['Bien bien aca ando','Bieeenn aca laburando :)']
     elif inList(mensaje, ['queso','q es eso']):
         responses = ['un hueso','un peso','Queso']
     elif inList(mensaje, ['negraso']):
         responses = ['Negro tengo el culo :p']
+    elif inList(mensaje, ['chota']):
+        responses = ['ufff unas ganas de una buena chota']
+    elif inList(mensaje, ['re triste']):
+        responses = ['como tu vida :o']
+    elif inList(mensaje, ['a ver']):
+        responses = ['alla la estan viendo']
+
+    elif inList(mensaje, ['eu','fuck']):
+        responses = ['q','queu','qpe','q pasop']
+    elif inList(mensaje, ['mora se la come']):
+        responses = ['a tu vieja se la come']
+    elif inList(mensaje, ['si o no','fumas','te gustan ver pelis','sos racista','te gustan las tetas','te gusta el pito','te haces pajas','tenemos sexo','queres ser mi novio','ves porno']):
+        responses = ['si','no']
+    elif inList(mensaje, ['nada']):
+        responses = ['q aburrido :(']
+    elif inList(mensaje, ['como concha es esto','ayuda','help']):
+        responses = ['Soy un bot diseñado para hablar por wts :). Puedes usar las funciones de chat normal o ejecutar comandos, para mas informacion pulsa !help']
+    
+    elif inList(mensaje, ['apa','opa']):
+        responses = ['apa','apa dijo la papa','opa']
+    elif inList(mensaje, ['pobre mati']):
+        responses = ['y bueno ya fue, lo conozco hace mucho']
+    elif inList(mensaje, ['aguante simsimi']):
+        responses = ['una mas y te funo en twitter, como vas a decir eso lcdtv']
+    elif inList(mensaje, ['no entendi']):
+        responses = ['q no entendes? >:(']
+    elif inList(mensaje, ['me alegro']):
+        responses = ['Gracias :)','Mas chuwi :3']
+    elif inList(mensaje, ['muy malo','malisimo']):
+        responses = ['tu cara es mala']
+    elif inList(mensaje, ['messi']):
+        responses = ['mesi dije']
+    elif inList(mensaje, ['decime otra cosa']):
+        responses = ['q cosaaa']
+
+    elif inList(mensaje, ['tengo hambre']):
+        responses = ['chupate el dedo grande']
+    elif inList(mensaje, ['dios']):
+        responses = ['dios no vino y por eso estoy yo q soy su remplazo dea']
+    elif inList(mensaje, ['de que laburas','de q laburas','de que trabajas','de q trabajas','cual es tu trabajo']):
+        responses = ['soy empleado de whatsapp industries']
+    elif inList(mensaje, ['como te llamas','cual es tu nombre']):
+        responses = ['botneitor 3000','Robocop','Arnold Schwarzenegger']
+    elif inList(mensaje, ['yo soy ','mucho gusto']):
+        responses = ['mucho gusto :)','un placer conocernos, me contaron mucho de vs :3']
+    elif inList(mensaje, ['ahhhhhhh']):
+        responses = ['aaaaahhhh']
+    elif inList(mensaje, ['me re descansa']):
+        responses = ['hasta un bot te descansa pa']
+    elif inList(mensaje, ['ya no podemos ser amigos','yo igual']):
+        responses = ['ohhhh :(']
+    elif inList(mensaje, ['seamos amigos']):
+        responses = ['siiii','mmm no','Oka']
+    
     else:
         archivo.write(f"{mensaje}\n")
 
@@ -263,10 +322,13 @@ def prenderBot(modo,responderNuevosChats):
             isNuevoChat3 = pg.pixelMatchesColor(ubChat[0],(ubChat[1]+140),(0,168,132))
             if isNuevoChat1:
                 meterseChat(ubChat[0],ubChat[1])
-            elif isNuevoChat2:
+                time.sleep(0.01)
+            if isNuevoChat2:
                 meterseChat(ubChat[0],ubChat[1]+70)
-            elif isNuevoChat3:
+                time.sleep(0.01)
+            if isNuevoChat3:
                 meterseChat(ubChat[0],ubChat[1]+140)
+                time.sleep(0.01)
         
         if modo==0:
             aux+=1
@@ -278,7 +340,7 @@ def prenderBot(modo,responderNuevosChats):
                 try:
                     respuesta = elegirRespuesta(getMensaje())
                 except:
-                    respuesta = "ERROR: Ilegal value"
+                    respuesta = "a?"
             else:
                 if corroborarRespuestaPreguntados(getMensaje(),pos):
                     respuesta = f"Respuesta Correcta!!!"
@@ -300,7 +362,7 @@ def prenderBot(modo,responderNuevosChats):
             else:
                 escribir(respuesta)
         
-        if aux== (3000): 
+        if aux== (4000): 
             break
         time.sleep(tiempoReaccion)
 
@@ -308,5 +370,5 @@ def prenderBot(modo,responderNuevosChats):
     archivo.close()
 
 
-#time.sleep(5)
-#prenderBot(0,False)
+time.sleep(5)
+prenderBot(0,True)

@@ -299,7 +299,7 @@ def corroborarRespuestaPreguntados(msg,posicion):
 
 ##### AHORCADO #####
 def playAhorcado():
-    palabra,palabraOculta = ahorcado.elegirPalabra()
+    palabraOculta = ahorcado.elegirPalabra()
     escribir("Bienvenido Al Juego Del Ahorcado")
     escribir(palabraOculta)
 
@@ -307,9 +307,14 @@ def comprobarLetra(mensaje):
     mensaje = str(mensaje).lower()
     mensaje = cleanMensaje(mensaje)
     
-    if len(mensaje) > 1:
-        mensaje = mensaje[0]
-    
+    try:
+        if len(mensaje) > 1:
+            mensaje = mensaje[0]
+            escribir(f"Mensage tiene mas de un caracter por lo q usaremos su primera letra ({mensaje})")
+    except:
+        escribir("ERROR: illegal value")
+        return False
+
     boolean,palabraOculta,fallos = ahorcado.comprobarLetra(mensaje)
     if (boolean):
         if ahorcado.comprobarGanador():
@@ -321,7 +326,7 @@ def comprobarLetra(mensaje):
         escribir(f"Errores: {fallos}/6")
         if ahorcado.comprobarPerdedor():
             escribir("Perdiste :(")
-            escribir("La palabra era: " + ahorcado.getPalabra())
+            escribir("La palabra era: " + ahorcado.getPalabra().capitalize())
             return True
     escribir(palabraOculta)
     return False 

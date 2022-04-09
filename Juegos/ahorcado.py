@@ -3,7 +3,8 @@ import random
 
 class Ahorcado:
     def __init__(self):
-        self.palabras = ['casa','perro','gato','coche','planta','ahorcado','mujer','hombre']
+        self.palabras = ['casa','perro','gato','coche','planta','ahorcado','mujer','hombre','pepino','constantinopla','viena','metropoli','dinosaurio','hipopotamo','rinoceronte','aguatero',
+        'sustantivos','adjetivos','homosapiens','australopitecus','saturno','hornitorrinco','alcalde','cortina','netherite','asfalto','cuaderno','electricidad','bot','escuela','ejercito','avenida','barrio','guante','cabello','camino','camara','cigarro','mantel','manguera','silencio','capsula','lampara','pistola','pintura','pavimento','ocasion','comida']
         self.palabra = ""
         self.palabraOculta = ""
         self.letras = []
@@ -25,16 +26,12 @@ class Ahorcado:
             return "foto6"
         elif n == 7:
             return "foto7"
-        
-    def mostrarPalabra(self,palabra):
-        for i in palabra:
-            pass
     
     def elegirPalabra(self):
         self.palabra = random.choice(self.palabras)
         self.palabraOculta = len(self.palabra) * "-"
-
-        return self.palabra,self.palabraOculta
+        self.fallos = 0
+        return self.palabraOculta
 
     def comprobarLetra(self,letra):
         boolean  = False

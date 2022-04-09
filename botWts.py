@@ -5,9 +5,11 @@ import pyperclip as clip
 
 from Juegos.preguntados import Preguntados
 from Juegos.ahorcado import Ahorcado
+from Juegos.wordle import Wordle
 
 preguntados = Preguntados()
 ahorcado = Ahorcado()
+wordle = Wordle()
 archivo = open("InformacionParaAprender.txt","a")
 
 
@@ -52,6 +54,8 @@ def elegirRespuesta(msg):
             return "func03"
         elif mensaje == '!ahorcado':
             return "func04"
+        elif mensaje == '!reglamento':
+            return "func05"
         else:
             return "ERROR: Comand not found"
     
@@ -303,7 +307,7 @@ def playAhorcado():
     escribir("Bienvenido Al Juego Del Ahorcado")
     escribir(palabraOculta)
 
-def comprobarLetra(mensaje):
+def comprobarLetraAhorcado(mensaje):
     mensaje = str(mensaje).lower()
     mensaje = cleanMensaje(mensaje)
     
@@ -330,7 +334,32 @@ def comprobarLetra(mensaje):
             return True
     escribir(palabraOculta)
     return False 
-        
+
+
+
+##### WORDLE #####
+def playWordle():
+    escribir('Bienvenido Al Juego "Wordle" ')
+    pintarWordle()
+
+def comprobarPalabraWordle():
+    mensaje = str(mensaje).lower()
+    mensaje = cleanMensaje(mensaje)
+
+    if len(mensaje) != 5:
+        escribir("ERROR: Value out of range")
+        return False
+    
+
+
+def pintarWordle(mensaje):
+    escribirJunto(wordle.getResultados())
+
+
+
+
+
+
 
 def mesclarLista(lista):
     random.shuffle(lista)
@@ -388,11 +417,13 @@ def prenderBot(responderNuevosChats):
                 else:
                     respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
                 modo = 0
-            else:
-                if comprobarLetra(getMensaje()):
+            elif modo == 2:
+                if comprobarLetraAhorcado(getMensaje()):
                     modo = 0
                 
                 respuesta = ""
+            else:
+                comprobarPalabraWordle(getMensaje())
             
 
             if 'func' in respuesta:
@@ -408,7 +439,12 @@ def prenderBot(responderNuevosChats):
                 elif '04' in respuesta:
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
                     modo = 2
-                    pos =playAhorcado()
+                    playAhorcado()
+                elif '05' in respuesta:
+                    modo = 3
+                    playWordle() 
+                elif '06' in respuesta:
+                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra se escibre normal'])
 
             else:
                 escribir(respuesta)
@@ -423,4 +459,4 @@ def prenderBot(responderNuevosChats):
 print("Tenes 5 segundos Correeeee")
 time.sleep(5)
 # Responder Chats
-prenderBot(False)
+#prenderBot(False)

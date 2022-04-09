@@ -417,6 +417,5 @@ def prenderBot(responderNuevosChats):
 
 print("Tenes 5 segundos Correeeee")
 time.sleep(5)
-escribir("Bot Iniciado...")
-# Modo 
+# Responder Chats
 prenderBot(False)

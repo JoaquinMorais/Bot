@@ -301,7 +301,7 @@ def corroborarRespuestaPreguntados(msg,posicion):
 def playAhorcado():
     palabraOculta = ahorcado.elegirPalabra()
     escribir("Bienvenido Al Juego Del Ahorcado")
-    escribir(palabraOculta)
+    palabraOcultaEscribir(palabraOculta)
 
 def comprobarLetra(mensaje):
     mensaje = str(mensaje).lower()
@@ -328,9 +328,20 @@ def comprobarLetra(mensaje):
             escribir("Perdiste :(")
             escribir("La palabra era: " + ahorcado.getPalabra().capitalize())
             return True
-    escribir(palabraOculta)
+    palabraOcultaEscribir(palabraOculta)
     return False 
-        
+
+def palabraOcultaEscribir(palabra):
+    aux = ""
+    for i in palabra:
+        aux = aux + i + " "
+    escribir(aux)
+
+
+
+
+
+
 
 def mesclarLista(lista):
     random.shuffle(lista)

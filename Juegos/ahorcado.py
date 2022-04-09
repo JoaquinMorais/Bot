@@ -34,8 +34,7 @@ class Ahorcado:
         self.palabra = random.choice(self.palabras)
         self.palabraOculta = len(self.palabra) * "-"
 
-        print(self.palabra)
-        print(self.palabraOculta)
+        return self.palabra,self.palabraOculta
 
     def comprobarLetra(self,letra):
         boolean  = False
@@ -61,8 +60,11 @@ class Ahorcado:
         else:
             return False
     
-     
+    def comprobarPerdedor(self):
+        if self.fallos == 6:
+            return True
+        else:
+            return False
+    def getPalabra(self):
+        return self.palabra
 
-ahorcado = Ahorcado()
-ahorcado.elegirPalabra()
-ahorcado.comprobarLetra(input(">>"))

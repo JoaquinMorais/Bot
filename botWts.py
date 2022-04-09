@@ -4,9 +4,10 @@ import random, re
 import pyperclip as clip
 
 from Juegos.preguntados import Preguntados
-
+from Juegos.ahorcado import Ahorcado
 
 preguntados = Preguntados()
+ahorcado = Ahorcado()
 archivo = open("InformacionParaAprender.txt","a")
 
 
@@ -49,6 +50,8 @@ def elegirRespuesta(msg):
             return "func02"
         elif mensaje == '!preguntados':
             return "func03"
+        elif mensaje == '!ahorcado':
+            return "func04"
         else:
             return "ERROR: Comand not found"
     
@@ -293,6 +296,37 @@ def corroborarRespuestaPreguntados(msg,posicion):
     else:
         return False
 
+
+##### AHORCADO #####
+def playAhorcado():
+    palabra,palabraOculta = ahorcado.elegirPalabra()
+    escribir("Bienvenido Al Juego Del Ahorcado")
+    escribir(palabraOculta)
+
+def comprobarLetra(mensaje):
+    mensaje = str(mensaje).lower()
+    mensaje = cleanMensaje(mensaje)
+    
+    if len(mensaje) > 1:
+        mensaje = mensaje[0]
+    
+    boolean,palabraOculta,fallos = ahorcado.comprobarLetra(mensaje)
+    if (boolean):
+        if ahorcado.comprobarGanador():
+            escribir("Ganaste!!!")
+            escribir("La palabra era: " + ahorcado.getPalabra())
+            return True
+    else:
+        escribir("Fallaste...")
+        escribir(f"Errores: {fallos}/6")
+        if ahorcado.comprobarPerdedor():
+            escribir("Perdiste :(")
+            escribir("La palabra era: " + ahorcado.getPalabra())
+            return True
+    escribir(palabraOculta)
+    return False 
+        
+
 def mesclarLista(lista):
     random.shuffle(lista)
     return lista
@@ -307,9 +341,10 @@ def buscarLista(n, lista):
 
 
 
-##### MAIN #####
-def prenderBot(modo,responderNuevosChats):
 
+##### MAIN #####
+def prenderBot(responderNuevosChats):
+    modo = 0
     tiempoReaccion = 0.1
 
     aux = 0
@@ -342,16 +377,22 @@ def prenderBot(modo,responderNuevosChats):
                     respuesta = elegirRespuesta(getMensaje())
                 except:
                     respuesta = "a?"
-            else:
+            elif modo == 1:
                 if corroborarRespuestaPreguntados(getMensaje(),pos):
                     respuesta = f"Respuesta Correcta!!!"
                 else:
                     respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
                 modo = 0
+            else:
+                if comprobarLetra(getMensaje()):
+                    modo = 0
+                
+                respuesta = ""
+            
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados'])
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado'])
                 elif '02' in respuesta:
                     break
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
@@ -359,6 +400,10 @@ def prenderBot(modo,responderNuevosChats):
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
                     modo = 1
                     pos =playPreguntados()
+                elif '04' in respuesta:
+                    #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
+                    modo = 2
+                    pos =playAhorcado()
 
             else:
                 escribir(respuesta)
@@ -370,6 +415,8 @@ def prenderBot(modo,responderNuevosChats):
     escribir("Bot Apagado...")
     archivo.close()
 
-
+print("Tenes 5 segundos Correeeee")
 time.sleep(5)
-prenderBot(0,False)
+escribir("Bot Iniciado...")
+# Modo 
+prenderBot(False)

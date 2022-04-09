@@ -1,0 +1,8 @@
+escribir("bot iniciado...")
+
+ahorcado
+--------
+ 
+mensaje recibido: --------
+decime
+ez

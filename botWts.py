@@ -54,8 +54,10 @@ def elegirRespuesta(msg):
             return "func03"
         elif mensaje == '!ahorcado':
             return "func04"
-        elif mensaje == '!reglamento':
+        elif mensaje == '!wordle':
             return "func05"
+        elif mensaje == '!reglamento':
+            return "func06"
         else:
             return "ERROR: Comand not found"
     
@@ -323,14 +325,14 @@ def comprobarLetraAhorcado(mensaje):
     if (boolean):
         if ahorcado.comprobarGanador():
             escribir("Ganaste!!!")
-            escribir("La palabra era: " + ahorcado.getPalabra())
+            escribir("La palabra era: " + ahorcado.getPalabra().capitalize)
             return True
     else:
         escribir("Fallaste...")
         escribir(f"Errores: {fallos}/6")
         if ahorcado.comprobarPerdedor():
             escribir("Perdiste :(")
-            escribir("La palabra era: " + ahorcado.getPalabra().capitalize())
+            escribir("La palabra era: " + wordle.getPalabra().capitalize)
             return True
     escribir(palabraOculta)
     return False 
@@ -340,20 +342,30 @@ def comprobarLetraAhorcado(mensaje):
 ##### WORDLE #####
 def playWordle():
     escribir('Bienvenido Al Juego "Wordle" ')
+    wordle.elegirPalabras()
     pintarWordle()
 
-def comprobarPalabraWordle():
+def comprobarPalabraWordle(mensaje):
     mensaje = str(mensaje).lower()
     mensaje = cleanMensaje(mensaje)
 
     if len(mensaje) != 5:
         escribir("ERROR: Value out of range")
         return False
-    
+    wordle.comprobarPalabra(mensaje)
+    pintarWordle()
+    if wordle.comprobarGanador(mensaje):
+        escribir("Ganaste!!!")
+        escribir(f"La palabra era {wordle.getPalabra().capitalize}")
+        return True
+    if wordle.comprobarPerdedor():
+        escribir("Perdiste... :(")
+        escribir(f"La palabra era {wordle.getPalabra().capitalize}")
+        return True
+    return False
 
-
-def pintarWordle(mensaje):
-    escribirJunto(wordle.getResultados())
+def pintarWordle():
+    escribirJunto(['*Wordle*'] + wordle.getResultados())
 
 
 
@@ -423,12 +435,14 @@ def prenderBot(responderNuevosChats):
                 
                 respuesta = ""
             else:
-                comprobarPalabraWordle(getMensaje())
+                if comprobarPalabraWordle(getMensaje()):
+                    modo = 0
+                respuesta = ""
             
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado'])
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!reglamento: Guia para aprender a jugar'])
                 elif '02' in respuesta:
                     break
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
@@ -444,7 +458,7 @@ def prenderBot(responderNuevosChats):
                     modo = 3
                     playWordle() 
                 elif '06' in respuesta:
-                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra se escibre normal'])
+                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)'])
 
             else:
                 escribir(respuesta)
@@ -458,5 +472,7 @@ def prenderBot(responderNuevosChats):
 
 print("Tenes 5 segundos Correeeee")
 time.sleep(5)
+
+
 # Responder Chats
-#prenderBot(False)
+prenderBot(False)

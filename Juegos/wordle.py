@@ -11,7 +11,8 @@ class Wordle():
     def elegirPalabras(self):
         self.palabra=random.choice(self.palabras)
         print(self.palabra)
-    
+        self.resultados = ['- - - - -','- - - - -','- - - - -','- - - - -','- - - - -','- - - - -']
+        self.intento = 0
 
     def comprobarPalabra(self,palabra):
         listBools = []
@@ -20,17 +21,18 @@ class Wordle():
             listBools.append(0)
             if palabra[i] in self.palabra:
                 listBools[i] = 1
-            if self.palabra[i] == palabra[i]:
+            
+            if palabra[i] == self.palabra[i]:
                 listBools[i] = 2
                 
         resultado = ""
         for i in range(5):
             if listBools[i] == 0:
-                resultado = f"{resultado} {palabra[i]}  "
+                resultado = f"{resultado}x"
             elif listBools[i] == 1:
-                resultado = f"{resultado}_{palabra[i]}_ "
+                resultado = f"{resultado}_{palabra[i]}_"
             elif listBools[i] == 2:
-                resultado = f"{resultado}*{palabra[i]}* "
+                resultado = f"{resultado}*{palabra[i]}*"
         
 
         self.resultados[self.intento] = resultado
@@ -50,10 +52,7 @@ class Wordle():
     
     def getResultados(self):
         return self.resultados
-        
+    def getPalabra(self):
+        return self.palabra
 
 
-
-wordle = Wordle()
-wordle.elegirPalabras()
-print(wordle.comprobarPalabra(input("Introduce una palabra: ")))

@@ -6,14 +6,16 @@ import pyperclip as clip
 from Juegos.preguntados import Preguntados
 from Juegos.ahorcado import Ahorcado
 from Juegos.wordle import Wordle
+from Juegos.ppt import PPT
+
 
 preguntados = Preguntados()
 ahorcado = Ahorcado()
 wordle = Wordle()
+ppt = PPT()
+
+
 archivo = open("InformacionParaAprender.txt","a")
-
-
-
 
 correcta = ""
 respuesta = []
@@ -56,8 +58,10 @@ def elegirRespuesta(msg):
             return "func04"
         elif mensaje == '!wordle':
             return "func05"
-        elif mensaje == '!reglamento':
+        elif mensaje == '!ppt':
             return "func06"
+        elif mensaje == '!reglamento':
+            return "func07"
         else:
             return "ERROR: Comand not found"
     
@@ -277,8 +281,11 @@ def meterseChat(ubicacionX, ubicacionY):
     pg.moveTo(ubicacionX-300,ubicacionY)
     pg.doubleClick()
 
-##### PREGUNTADOS #####
+##### PREGUNTADOS ##### (modo 1)
+
+
 def playPreguntados():
+    escribir("Bienvenido Al Juego De Preguntados")
     preg,respuesta =preguntados.Jugar()
     correcta = respuesta[0]
 
@@ -303,7 +310,7 @@ def corroborarRespuestaPreguntados(msg,posicion):
         return False
 
 
-##### AHORCADO #####
+##### AHORCADO ##### (modo 2)
 def playAhorcado():
     palabraOculta = ahorcado.elegirPalabra()
     escribir("Bienvenido Al Juego Del Ahorcado")
@@ -325,17 +332,19 @@ def comprobarLetraAhorcado(mensaje):
     if (boolean):
         if ahorcado.comprobarGanador():
             escribir("Ganaste!!!")
-            escribir("La palabra era: " + ahorcado.getPalabra().capitalize)
+            escribir("La palabra era: " + ahorcado.getPalabra().capitalize())
             return True
     else:
         escribir("Fallaste...")
         escribir(f"Errores: {fallos}/6")
         if ahorcado.comprobarPerdedor():
             escribir("Perdiste :(")
-            escribir("La palabra era: " + wordle.getPalabra().capitalize)
+            escribir("La palabra era: " + ahorcado.getPalabra().capitalize())
             return True
     palabraOcultaEscribir(palabraOculta)
     return False 
+
+
 def palabraOcultaEscribir(palabra):
     aux = ""
     for i in palabra:
@@ -343,7 +352,7 @@ def palabraOcultaEscribir(palabra):
     escribir(aux)
 
 
-##### WORDLE #####
+##### WORDLE ##### (modo 3)
 def playWordle():
     escribir('Bienvenido Al Juego "Wordle" ')
     wordle.elegirPalabras()
@@ -354,29 +363,55 @@ def comprobarPalabraWordle(mensaje):
     mensaje = cleanMensaje(mensaje)
 
     if len(mensaje) != 5:
-        escribir("ERROR: Value out of range")
-        return False
+        escribir("a?, la palabra debe tener 5 letras... Te la marco como error por tonto")
+        mensaje = "xxxxx"
     wordle.comprobarPalabra(mensaje)
     pintarWordle()
     if wordle.comprobarGanador(mensaje):
         escribir("Ganaste!!!")
-        escribir(f"La palabra era {wordle.getPalabra().capitalize}")
+        escribir(f"La palabra era {wordle.getPalabra().capitalize()}")
         return True
     if wordle.comprobarPerdedor():
         escribir("Perdiste... :(")
-        escribir(f"La palabra era {wordle.getPalabra().capitalize}")
+        escribir(f"La palabra era {wordle.getPalabra().capitalize()}")
         return True
     return False
 
 def pintarWordle():
     escribirJunto(['*Wordle*'] + wordle.getResultados())
 
+##### Piedra Papel o Tijera ##### (modo 4)
 
+def playPiedraPapelTijera():
+    escribir("Bienvenido Al Juego De Piedra Papel O Tijera")
+    ppt.iniciando()
+    pintarPPT()
 
+def comprobarPalabraPPT(mensaje):
+    mensaje == adaptarMensaje(mensaje)
+    if mensaje == False:
+        escribir("Saliendo De Modo De Juego")
+        return True
+    escribir(ppt.getResultado())
+    ppt.resultado(ppt.jugar(mensaje))
+    escribirJunto(f"Victorias: {ppt.getVictorias()}",f"Derrotas: {ppt.getDerrotas()}",f"Empates: {ppt.getEmpates()}")
+    return False
 
+def adaptarMensaje(mensaje):
+    mensaje = str(mensaje).lower()
+    mensaje = cleanMensaje(mensaje)
+    if mensaje == "1":
+        return "piedra"
+    elif mensaje == "2":
+        return "papel"
+    elif mensaje == "3":
+        return "tijera"
+    else:
+        return False
 
-
-
+def pintarPPT():
+    escribirJunto(["Elige una opcion:","1) Piedra","2) Papel","3) Tijera","4) Salir"])
+    
 def mesclarLista(lista):
     random.shuffle(lista)
     return lista
@@ -392,7 +427,7 @@ def buscarLista(n, lista):
 
 
 
-##### MAIN #####
+##### MAIN ##### 
 def prenderBot(responderNuevosChats):
     modo = 0
     tiempoReaccion = 0.1
@@ -438,15 +473,19 @@ def prenderBot(responderNuevosChats):
                     modo = 0
                 
                 respuesta = ""
-            else:
+            elif modo == 3:
                 if comprobarPalabraWordle(getMensaje()):
+                    modo = 0
+                respuesta = ""
+            elif modo == 4:
+                if comprobarPalabraPPT(getMensaje()):
                     modo = 0
                 respuesta = ""
             
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!reglamento: Guia para aprender a jugar'])
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!ppt: Jugar a Piedra Papel o Tijeras','!reglamento: Guia para aprender a jugar'])
                 elif '02' in respuesta:
                     break
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
@@ -462,7 +501,11 @@ def prenderBot(responderNuevosChats):
                     modo = 3
                     playWordle() 
                 elif '06' in respuesta:
-                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)'])
+                    modo = 4
+                    playPiedraPapelTijera()
+                elif '07' in respuesta:
+                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)',
+                    '','Piedra Papel o Tijeras:','En serio necesitas ayuda con esto? Tuviste infancia?'])
 
             else:
                 escribir(respuesta)
@@ -478,5 +521,7 @@ print("Tenes 5 segundos Correeeee")
 time.sleep(5)
 
 
-# Responder Chats
-#prenderBot(False)
+# Responder Chats / 
+prenderBot(False)
+
+

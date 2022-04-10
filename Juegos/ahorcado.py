@@ -4,7 +4,7 @@ import random
 class Ahorcado:
     def __init__(self):
         self.palabras = ['casa','perro','gato','coche','planta','ahorcado','mujer','hombre','pepino','constantinopla','viena','metropoli','dinosaurio','hipopotamo','rinoceronte','aguatero',
-        'sustantivos','adjetivos','homosapiens','australopitecus','saturno','hornitorrinco','alcalde','cortina','netherite','asfalto','cuaderno','electricidad','bot','escuela','ejercito','avenida','barrio','guante','cabello','camino','camara','cigarro','mantel','manguera','silencio','capsula','lampara','pistola','pintura','pavimento','ocasion','comida']
+        'sustantivos','adjetivos','homosapiens','hipopotomonstrosesquipedaliofobia','australopitecus','saturno','hornitorrinco','alcalde','cortina','netherite','asfalto','cuaderno','electricidad','bot','escuela','ejercito','avenida','barrio','guante','cabello','camino','camara','cigarro','mantel','manguera','silencio','capsula','lampara','pistola','pintura','pavimento','ocasion','comida']
         self.palabra = ""
         self.palabraOculta = ""
         self.letras = []

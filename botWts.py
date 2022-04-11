@@ -465,7 +465,7 @@ def comprobarPalabraBuscaminas(mensaje):
 def prenderBot(responderNuevosChats):
     modo = 0
     tiempoReaccion = 0.1
-
+    respuesta = ""
     aux = 0
     pos = 0
 

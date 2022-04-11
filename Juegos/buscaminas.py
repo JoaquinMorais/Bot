@@ -54,7 +54,6 @@ class Buscaminas():
                     elem = "*9*"
                 respuesta += str(elem) + " "
             lista.append(respuesta)
-        print(respuesta)
         return lista
     
     def generarMinas(self,tablero):

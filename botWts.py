@@ -52,6 +52,8 @@ def elegirRespuesta(msg):
             return "func01"
         elif mensaje == '!hola':
             return "Hola!!! Soy un bot de prueba, escribiendo '!help' te daré una lista de comandos"
+        elif mensaje == '!admin':
+            return "func00"
         elif mensaje == '!turnoff':
             return "func02"
         elif mensaje == '!preguntados':
@@ -462,7 +464,7 @@ def comprobarPalabraBuscaminas(mensaje):
     return False
 
 ##### MAIN ##### 
-def prenderBot(responderNuevosChats):
+def prenderBot(responderNuevosChats,modoAdmin):
     modo = 0
     tiempoReaccion = 0.1
     respuesta = ""
@@ -492,39 +494,49 @@ def prenderBot(responderNuevosChats):
         isNotMensajeResivido = pg.pixelMatchesColor(ub[0],ub[1],(17,25,31))
         
         if isNotMensajeResivido == False:
-            
             if modo == 0:
-                try:
-                    respuesta = elegirRespuesta(getMensaje())
-                except:
-                    respuesta = "a?"
-            elif modo == 1:
-                if corroborarRespuestaPreguntados(getMensaje(),pos):
-                    respuesta = f"Respuesta Correcta!!!"
-                else:
-                    respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
-                modo = 0
-            elif modo == 2:
-                if comprobarLetraAhorcado(getMensaje()):
-                    modo = 0
+                    try:
+                        respuesta = elegirRespuesta(getMensaje())
+                    except:
+                        respuesta = "a?"
+            if modoAdmin:
                 
-                respuesta = ""
-            elif modo == 3:
-                if comprobarPalabraWordle(getMensaje()):
+                if modo == 1:
+                    if corroborarRespuestaPreguntados(getMensaje(),pos):
+                        respuesta = f"Respuesta Correcta!!!"
+                    else:
+                        respuesta = f"Respuesta Incorrecta... la respuesta correcta era la {pos+1}"
                     modo = 0
-                respuesta = ""
-            elif modo == 4:
-                if comprobarPalabraPPT(getMensaje()):
-                    modo = 0
-                respuesta = ""
-            elif modo == 5:
-                if comprobarPalabraBuscaminas(getMensaje()):
-                    modo = 0
-                respuesta = ""
-            
+                elif modo == 2:
+                    if comprobarLetraAhorcado(getMensaje()):
+                        modo = 0
+                    
+                    respuesta = ""
+                elif modo == 3:
+                    if comprobarPalabraWordle(getMensaje()):
+                        modo = 0
+                    respuesta = ""
+                elif modo == 4:
+                    if comprobarPalabraPPT(getMensaje()):
+                        modo = 0
+                    respuesta = ""
+                elif modo == 5:
+                    if comprobarPalabraBuscaminas(getMensaje()):
+                        modo = 0
+                    respuesta = ""
+            else:
+                respuesta = "El Modo Administrador Esta Desactivado... Intente Mas Tarde"
+                modo = 0
 
             if 'func' in respuesta:
-                if '01' in respuesta:
+                if '00' in respuesta:
+                    if modoAdmin:
+                        escribir("Modo Administrador Desctivado")
+                        modoAdmin = False
+                    else:
+                        escribir("Modo Administrador Activado")
+                        modoAdmin = True
+                elif '01' in respuesta:
                     escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!ppt: Jugar a Piedra Papel o Tijeras','!buscaminas: Jugar al buscaminas','!reglamento: Guia para aprender a jugar'])
                 elif '02' in respuesta:
                     break
@@ -564,5 +576,5 @@ print("Tenes 5 segundos Correeeee")
 time.sleep(5)
 
 
-# Responder Chats / 
-prenderBot(False)
+# Responder Chats / Modo Administrador
+prenderBot(False,True)

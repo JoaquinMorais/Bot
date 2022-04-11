@@ -1,3 +1,4 @@
+from email import contentmanager
 import pyautogui as pg
 import time
 import random, re
@@ -7,12 +8,13 @@ from Juegos.preguntados import Preguntados
 from Juegos.ahorcado import Ahorcado
 from Juegos.wordle import Wordle
 from Juegos.ppt import PPT
-
+from Juegos.buscaminas import Buscaminas
 
 preguntados = Preguntados()
 ahorcado = Ahorcado()
 wordle = Wordle()
 ppt = PPT()
+buscaminas = Buscaminas()
 
 
 archivo = open("InformacionParaAprender.txt","a")
@@ -60,8 +62,10 @@ def elegirRespuesta(msg):
             return "func05"
         elif mensaje == '!ppt':
             return "func06"
-        elif mensaje == '!reglamento':
+        elif mensaje == '!buscaminas':
             return "func07"
+        elif mensaje == '!reglamento':
+            return "func08"
         else:
             return "ERROR: Comand not found"
     
@@ -424,10 +428,38 @@ def pintarPPT():
 
 
 
+contErrores = 0
+##### BUSCAMINAS ##### (modo 5)
+def playBuscaminas():
+    escribir('Bienvenido Al Juego De "Buscaminas"')
+    contErrores = 0
+    buscaminas.iniciar()
+    pintarBuscaminas()
 
+def pintarBuscaminas():
+    escribirJunto(['*Buscaminas*'] + buscaminas.muestraTablero(buscaminas.getVisible())+[f"   awsd - m - b/v "])
 
+def comprobarPalabraBuscaminas(mensaje):
+    mensaje = str(mensaje).lower()
+    if mensaje not in ["a","w","s","d","m","b","v"]:
+       mensaje = "a"
+       
+       
+    else:
+        contErrores = 0
+    play,ganas = buscaminas.jugando(mensaje)
+    
+    if not play:
+        escribirJunto(['*Buscaminas*'] + buscaminas.muestraTablero(buscaminas.getOculto()))
+        if ganas:
+            escribir("Ganaste!!!")
+        else:
+            escribir("Perdiste... :(")
+        return True
+    else:
+        pintarBuscaminas()
 
-
+    return False
 
 ##### MAIN ##### 
 def prenderBot(responderNuevosChats):
@@ -485,11 +517,15 @@ def prenderBot(responderNuevosChats):
                 if comprobarPalabraPPT(getMensaje()):
                     modo = 0
                 respuesta = ""
+            elif modo == 5:
+                if comprobarPalabraBuscaminas(getMensaje()):
+                    modo = 0
+                respuesta = ""
             
 
             if 'func' in respuesta:
                 if '01' in respuesta:
-                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!ppt: Jugar a Piedra Papel o Tijeras','!reglamento: Guia para aprender a jugar'])
+                    escribirJunto(['Listado de comandos:','!help: Ayuda','!hola: Saludo','!turnoff: Apagar El Bot','!preguntados: Jugar a preguntados','!ahorcado: Jugar a ahorcado','!wordle: Jugar a Wordle','!ppt: Jugar a Piedra Papel o Tijeras','!buscaminas: Jugar al buscaminas','!reglamento: Guia para aprender a jugar'])
                 elif '02' in respuesta:
                     break
                     #escribir("Esta funcion esta desabilitada momentaneamente, intente mas tarde...")
@@ -508,8 +544,11 @@ def prenderBot(responderNuevosChats):
                     modo = 4
                     playPiedraPapelTijera()
                 elif '07' in respuesta:
+                    modo = 5
+                    playBuscaminas()
+                elif '08' in respuesta:
                     escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)',
-                    '','Piedra Papel o Tijeras:','En serio necesitas ayuda con esto? Tuviste infancia?'])
+                    '','Piedra Papel o Tijeras:','En serio necesitas ayuda con esto? Tuviste infancia?','','Buscaminas:','Es el tipico juego de buscaminas, pero primero debes aprender a usar los controles del modo wts','A: Moverse izquierda','W: Moverse Arriba','S: Moverse Abajo','D: Moverse Derecha','M: Mostar Casilla','B: Poner Bandera','V: Quitar Bandera'])
 
             else:
                 escribir(respuesta)
@@ -527,4 +566,3 @@ time.sleep(5)
 
 # Responder Chats / 
 prenderBot(False)
-

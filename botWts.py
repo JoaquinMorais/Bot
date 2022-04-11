@@ -160,6 +160,16 @@ def elegirRespuesta(msg):
         responses = ['No lo se :(','Ni idea']
     elif inList(mensaje, ['te odio','te amo','te quiero']):
         responses = ['y yo a vs :3','yo mas :3']
+    elif inList(mensaje, ['decime']):
+        responses = ['q te digo?']
+    elif inList(mensaje, ['ez','easy','isi']):
+        responses = ['pz','pizi']
+    elif inList(mensaje, ['eh']):
+        responses = ['eh eh']
+    elif inList(mensaje, ['lemon']):
+        responses = ['squizzy']
+    elif inList(mensaje, ['vamos','suuu']):
+        responses = ['suuuuuuuuuuu','vamaaaa','vamooos']
 
     
     elif inList(mensaje, ['chau','chao','adios','bye','despues hablamos','hasta luego','hasta la proxima']):
@@ -176,7 +186,7 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['callame']):
         responses = ['Ehhhhh no puedo tengo fulbo','Ay... * se sonroja *','Uwu']
     elif inList(mensaje, ['ptm','lpm','lcdll','lrpmqmrp','lrpmqmp','mal']):
-        responses = ['Si Lcdll','Lpmqmp','lpm','ptm']
+        responses = ['Si Lcdll','Lpmqmp','lpm','ptm','sep']
     elif inList(mensaje, ['okok','oka','ok']):
         responses = ['okok','Oka :)']
     elif inList(mensaje, ['vs','vos']):
@@ -197,7 +207,7 @@ def elegirRespuesta(msg):
     elif inList(mensaje, ['mora se la come']):
         responses = ['a tu vieja se la come']
     elif inList(mensaje, ['si o no','fumas','te gustan ver pelis','sos racista','te gustan las tetas','te gusta el pito','te haces pajas','tenemos sexo','queres ser mi novio','ves porno']):
-        responses = ['si','no']
+        responses = ['si','no','sep','nop']
     elif inList(mensaje, ['nada']):
         responses = ['q aburrido :(']
     elif inList(mensaje, ['como concha es esto','ayuda','help']):
@@ -230,15 +240,20 @@ def elegirRespuesta(msg):
         responses = ['botneitor 3000','Robocop','Arnold Schwarzenegger']
     elif inList(mensaje, ['yo soy ','mucho gusto']):
         responses = ['mucho gusto :)','un placer conocernos, me contaron mucho de vs :3']
-    elif inList(mensaje, ['ahhhhhhh']):
-        responses = ['aaaaahhhh']
+    elif inList(mensaje, ['ah']):
+        responses = ['aaaaahhhh','ah','am','claro']
     elif inList(mensaje, ['me re descansa']):
         responses = ['hasta un bot te descansa pa']
     elif inList(mensaje, ['ya no podemos ser amigos','yo igual']):
         responses = ['ohhhh :(']
     elif inList(mensaje, ['seamos amigos']):
         responses = ['siiii','mmm no','Oka']
-    
+    elif inList(mensaje, ['verga']):
+        responses = ['unas ganas de una verg xd']
+    elif inList(mensaje, ['yendo']):
+        responses = ['yendo no, llegando']
+    elif inList(mensaje, ['veamos']):
+        responses = ['veamos dijo el ciego ;)']
     else:
         archivo.write(f"{mensaje}\n")
 

@@ -1,4 +1,3 @@
-from email import contentmanager
 import pyautogui as pg
 import time
 import random, re

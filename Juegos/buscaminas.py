@@ -6,7 +6,7 @@ class Buscaminas():
         self.ganas = False
         self.filas = 10
         self.columnas = 10
-        self.minas = 13
+        self.minas = 10
         self.minasMarcadas = []
         self.visible = self.crearTablero('$')
         self.oculto= self.crearTablero(0)

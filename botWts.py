@@ -547,8 +547,8 @@ def prenderBot(responderNuevosChats):
                     modo = 5
                     playBuscaminas()
                 elif '08' in respuesta:
-                    escribirJunto(['*Ayuda Con El Reglamento:*','','Wordle:','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)',
-                    '','Piedra Papel o Tijeras:','En serio necesitas ayuda con esto? Tuviste infancia?','','Buscaminas:','Es el tipico juego de buscaminas, pero primero debes aprender a usar los controles del modo wts','A: Moverse izquierda','W: Moverse Arriba','S: Moverse Abajo','D: Moverse Derecha','M: Mostar Casilla','B: Poner Bandera','V: Quitar Bandera'])
+                    escribirJunto(['*Ayuda Con El Reglamento*','','*Preguntados*','Es un juego de preguntas y respuestas, teniendo 4 opciones tendras que elegir la opcion correcta para ganar','','*Ahorcado:*','Es un juego de adivinanzas donde tienes que adivinar una palabra sugiriendo letras dentro de un numero limitado de vidas','','*Wordle:*','El juego tienes q adivinar una palabra con 6 intentos','Cuando la letra esta en la palabra y en la posicion se marca en *Negrita*','Cuando la letra esta en la palabra pero en la posicion equivocada se marca en _Cursiva_','Si la letra no se encuentra en la palabra sera remplazada por una x(somos inclusivos xd)',
+                    '','*Piedra Papel o Tijeras:*','En serio necesitas ayuda con esto? Tuviste infancia?','','*Buscaminas:*','Es el tipico juego de buscaminas, pero primero debes aprender a usar los controles del modo wts','(E: JUGADOR)','A: Moverse izquierda','W: Moverse Arriba','S: Moverse Abajo','D: Moverse Derecha','M: Mostar Casilla','B: Poner Bandera','V: Quitar Bandera'])
 
             else:
                 escribir(respuesta)

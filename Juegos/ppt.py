@@ -47,15 +47,17 @@ class PPT():
                 return 1
 
     def resultado(self,mensaje):
-        if mensaje == 0:
+        if mensaje == "0":
             self.victorias += 1
-            return random.choice("Ganaste -.-",'Te la doy como buena...','Ahhhh','Puto','-.-')
-        elif mensaje == 1:
+            return "Ganaste -.- Te la doy como buena..."
+        elif mensaje == "1":
             self.derrotas += 1
-            return random.choice("Te gane, a casa malo",'A casa Pete,','Pal lobbyyyy','A tomar la leche')
-        elif mensaje == 2:
+            return "Te gane, a casa malo A tomar la leche"
+        elif mensaje == "2":
             self.empates += 1
             return "Empate :("
+
+
     def getVictorias(self):
         return self.victorias
     def getDerrotas(self):

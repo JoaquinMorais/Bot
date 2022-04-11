@@ -283,7 +283,6 @@ def meterseChat(ubicacionX, ubicacionY):
 
 ##### PREGUNTADOS ##### (modo 1)
 
-
 def playPreguntados():
     escribir("Bienvenido Al Juego De Preguntados")
     preg,respuesta =preguntados.Jugar()
@@ -291,7 +290,9 @@ def playPreguntados():
 
     respuesta = mesclarLista(respuesta)
     posicion = buscarLista(correcta,respuesta)
-
+    print(f"respuesta: {respuesta}")
+    print(f"correcta: {correcta}")
+    print(f"posicion: {posicion}")
     respNum = []
     for i in range(0, len(respuesta)):
         respNum.append(f"{i+1}) {respuesta[i]}")
@@ -303,12 +304,17 @@ def playPreguntados():
 def corroborarRespuestaPreguntados(msg,posicion):
     mensaje = str(msg).lower()
     mensaje = cleanMensaje(mensaje)
-    print(f"mensaje recibido: {mensaje}")
     if mensaje == str(posicion+1):
         return True
     else:
         return False
 
+def mesclarLista(lista):
+    random.shuffle(lista)
+    return lista
+
+def buscarLista(n, lista):
+    return lista.index(n)
 
 ##### AHORCADO ##### (modo 2)
 def playAhorcado():
@@ -388,38 +394,34 @@ def playPiedraPapelTijera():
     pintarPPT()
 
 def comprobarPalabraPPT(mensaje):
-    mensaje == adaptarMensaje(mensaje)
-    if mensaje == False:
+
+    if not mensaje in ["1","2","3"]:
         escribir("Saliendo De Modo De Juego")
         return True
-    escribir(ppt.getResultado())
-    ppt.resultado(ppt.jugar(mensaje))
-    escribirJunto(f"Victorias: {ppt.getVictorias()}",f"Derrotas: {ppt.getDerrotas()}",f"Empates: {ppt.getEmpates()}")
+    n = ppt.jugar(adaptarMensaje(mensaje))
+    escribir(ppt.getResultado().capitalize())
+    time.sleep(0.5)
+    print("n: ",n)
+    print("resultado: ",ppt.resultado(str(n)))
+    escribir(ppt.resultado(str(n)))
+    escribirJunto([f"Victorias: {ppt.getVictorias()}",f"Derrotas: {ppt.getDerrotas()}",f"Empates: {ppt.getEmpates()}"])
+    pintarPPT()
     return False
 
 def adaptarMensaje(mensaje):
-    mensaje = str(mensaje).lower()
-    mensaje = cleanMensaje(mensaje)
+    mensaje = str(mensaje)
     if mensaje == "1":
         return "piedra"
     elif mensaje == "2":
         return "papel"
     elif mensaje == "3":
         return "tijera"
-    else:
-        return False
+
 
 def pintarPPT():
     escribirJunto(["Elige una opcion:","1) Piedra","2) Papel","3) Tijera","4) Salir"])
     
-def mesclarLista(lista):
-    random.shuffle(lista)
-    return lista
 
-def buscarLista(n, lista):
-    for i in range(0, len(lista)):
-        if lista[i] == n:
-            return i
 
 
 
@@ -433,9 +435,11 @@ def prenderBot(responderNuevosChats):
     tiempoReaccion = 0.1
 
     aux = 0
+    pos = 0
+
     escribir("Bot Encendido")
     while True:
-        pos = 0
+        
         
         if responderNuevosChats and modo==0:
             isNuevoChat1 = pg.pixelMatchesColor(ubChat[0],ubChat[1],(0,168,132))
@@ -523,5 +527,4 @@ time.sleep(5)
 
 # Responder Chats / 
 prenderBot(False)
-
 
